@@ -1,4 +1,4 @@
-Snak-Server
+Snak-Attak
 ==========
 
 Serves the website, and provides the REST API.
