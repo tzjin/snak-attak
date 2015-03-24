@@ -5,7 +5,6 @@ import (
    "github.com/golang/glog"
 
    "github.com/tzjin/snak-attak/system"
-   "github.com/tzjin/snak-attak/controllers"
    "github.com/tzjin/snak-attak/models"
 )
 
