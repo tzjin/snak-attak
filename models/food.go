@@ -5,28 +5,39 @@ import (
    "log"
    "database/sql"
 
-   _ "github.com/lib/pq"
+   "github.com/go-gorp/gorp"  // map structs to db
+   "github.com/golang/glog"   // nicer log package
+   _ "github.com/lib/pq"      // postgres driver
 )
 
-const (
-   DB_USER     = "user"
-   DB_PASSWORD = "password"
-   DB_NAME     = "mydb"
-)
+type Food struct {
+   // lowercase unnecessary
+   Id       int64    'id'
+   Name     string   'name'
+   Hall     string   'hall'
+   Rating   int32    'rating'
+}
 
-func main() {
+func GetDbMap(usr, pwd, dbname string) *gorp.DbMap{
    // user and password unncessary?
    dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable",
-      DB_USER, DB_PASSWORD, DB_NAME)
+      usr, pwd, dbname)
    db, err := sql.Open("postgres", dbinfo)
-   checkErr(err)
-   defer db.Close()
+   checkErr(err, "Could not open database")
+   // defer db.Close()
 
-   // do stuff
+   dbMap := &gorp.DbMap{Db: db, Dialect: gorp.PostgresDialect{}}
+
+   dbMap.AddTableWithName(Food{}, "Food").SetKeys(true, "Id")
+
+   err = dbMap.CreateTablesIfNotExists()
+   checkErr(err, "Create Table Failed")
+
+   return dbMap
 }
 
 func checkErr(err error, msg string) {
    if err != nil {
-      log.Panicln(msg, err)
+      glog.Panicln(msg, err)
    }
 }

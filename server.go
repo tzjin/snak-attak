@@ -6,6 +6,8 @@ import (
    
    "github.com/zenazn/goji"
    "github.com/zenazn/goji/web"
+
+   "github.com/tzjin/snak-attak/system"
 )
 
 func hello(c web.C, w http.ResponseWriter, r *http.Request) {
