@@ -6,16 +6,16 @@ import (
    "database/sql"
 
    "github.com/go-gorp/gorp"  // map structs to db
-   "github.com/golang/glog"   // nicer log package
    _ "github.com/lib/pq"      // postgres driver
 )
 
-type Food struct {
    // lowercase unnecessary
-   Id       int64    'id'
-   Name     string   'name'
-   Hall     string   'hall'
-   Rating   int32    'rating'
+
+type Food struct {
+   Id       int64    `db:"UserId"`
+   Name     string   //'name'
+   Hall     string   //'hall'
+   Rating   int32    //'rating'
 }
 
 func GetDbMap(usr, pwd, dbname string) *gorp.DbMap{
@@ -38,6 +38,6 @@ func GetDbMap(usr, pwd, dbname string) *gorp.DbMap{
 
 func checkErr(err error, msg string) {
    if err != nil {
-      glog.Panicln(msg, err)
+      log.Panicln(msg, err)
    }
 }
