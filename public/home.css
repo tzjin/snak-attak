@@ -1,0 +1,33 @@
+#today {
+	max-width: 940px;
+	margin: 0 auto;
+	padding-left: 5%;
+	background: #98AFC7;
+	color: white;
+}
+
+#filter {
+	max-width: 940px;
+	margin: 0 auto;
+	padding-left: 10%;
+}
+
+#res {
+	display: inline-block;
+	padding: 15px 10px;
+	padding-left: 10%;
+}
+
+#name {
+	float: left;
+	text-align: center;
+	margin: 0 0 5px 0;
+	padding: 1px 0 0 0;
+	width: 100%;
+}
+
+#login {
+	text-align: right;
+	margin: 0;
+	padding-right: 3%;
+}
