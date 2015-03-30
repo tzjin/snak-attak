@@ -12,10 +12,13 @@
 	padding-left: 10%;
 }
 
-#res {
-	display: inline-block;
-	padding: 15px 10px;
+u1 {
 	padding-left: 10%;
+	padding-right: 10%;
+	background-color: orange;
+	vertical-align: top;
+	display: inline-block;
+	width: 100%;
 }
 
 #name {
