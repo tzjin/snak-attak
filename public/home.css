@@ -1,24 +1,28 @@
 #today {
-	max-width: 940px;
 	margin: 0 auto;
 	padding-left: 5%;
 	background: #98AFC7;
 	color: white;
+	width: 100%;
 }
 
 #filter {
-	max-width: 940px;
 	margin: 0 auto;
 	padding-left: 10%;
+	width: 100%;
 }
 
-u1 {
-	padding-left: 10%;
-	padding-right: 10%;
+block {
+	display: inline-block;
+	vertical-align: top;
+	width: 5%;
+}
+
+filters {
+	display: block;
 	background-color: orange;
 	vertical-align: top;
-	display: inline-block;
-	width: 100%;
+
 }
 
 #name {
@@ -33,4 +37,5 @@ u1 {
 	text-align: right;
 	margin: 0;
 	padding-right: 3%;
+	width: 100%;
 }
