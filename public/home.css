@@ -10,19 +10,48 @@
 	margin: 0 auto;
 	padding-left: 10%;
 	width: 100%;
+	background: #85A3FF;
+	color: white;
 }
 
-block {
-	display: inline-block;
-	vertical-align: top;
-	width: 5%;
-}
-
-filters {
-	display: block;
+filters_1 {
 	background-color: orange;
-	vertical-align: top;
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	height: 35px;
+	width: 100px;
+}
 
+filters_2 {
+	background-color: orange;
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	height: 35px;
+	width: 100px;
+}
+
+filters_3 {
+	background-color: orange;
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	height: 35px;
+	width: 100px;
+}
+
+filter_groups {
+	background-color: orange;
+	display: block;
+	width: 100%;
+}
+
+all_filters {
+	display: block;
+	width: 55%;
+	
+	margin: 0 auto;
 }
 
 #name {
