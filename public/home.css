@@ -8,50 +8,91 @@
 
 #filter {
 	margin: 0 auto;
-	padding-left: 10%;
-	width: 100%;
+	padding-left: 5%;
+	width: 60%;
 	background: #85A3FF;
 	color: white;
+	height: 18px;
 }
 
-filters_1 {
-	background-color: orange;
+#border {
+	margin: 0 auto;
+	width: 60%;
+	background: #85A3FF;
+	height: 4px;
+}
+
+filters_labels {
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	height: 30px;
+	width: 120px;
+	margin: 5px 0;
+}
+
+filters {
+	background: orange;
 	display: inline-block;
 	vertical-align: center;
 	text-align: center;
 	height: 35px;
-	width: 100px;
-}
-
-filters_2 {
-	background-color: orange;
-	display: inline-block;
-	vertical-align: center;
-	text-align: center;
-	height: 35px;
-	width: 100px;
-}
-
-filters_3 {
-	background-color: orange;
-	display: inline-block;
-	vertical-align: center;
-	text-align: center;
-	height: 35px;
-	width: 100px;
+	width: 120px;
+	margin: 5px 0;
 }
 
 filter_groups {
-	background-color: orange;
+	background-color: #E98F16;
 	display: block;
 	width: 100%;
 }
 
 all_filters {
 	display: block;
-	width: 55%;
+	width: 60%;
 	
 	margin: 0 auto;
+}
+
+food_labels {
+	display: block;
+	width: 60%;
+	background-color: orange;
+	
+	margin: 0 auto;
+}
+
+food_label {
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	width: 50%;
+	margin: 5px 0;
+}
+
+location_label {
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	width: 26%;
+	margin: 5px 0;
+}
+
+rank_label {
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	width: 13%;
+	margin: 20px 0;
+}
+
+arrow_space {
+	background: orange;
+	display: inline-block;
+	vertical-align: center;
+	text-align: center;
+	width: 13%;
+	margin: 15px 0;
 }
 
 #name {
