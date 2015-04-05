@@ -52,6 +52,11 @@ func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
    return
 }
 
+func GetVotesForID(dbMap *gorp.DbMap, id int64) (votes int32) {
+   food, err := dbMap.Get(Food{}, id)
+   votes = food.Votes
+   return
+}
 func GetDbMap(user, password, hostname, port, database string) *gorp.DbMap {
    // connect to db using standard Go database/sql API
    // use whatever database/sql driver you wish
@@ -62,7 +67,7 @@ func GetDbMap(user, password, hostname, port, database string) *gorp.DbMap {
    // construct a gorp DbMap
    dbMap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{Engine: "InnoDB", Encoding: "UTF8MB4"}}
 
-   // add a table, setting the table name to 'Food' and
+   // add a table, setting the table name to 'Foods' and
    // specifying that the FoodId property is an auto incrementing PK
    dbMap.AddTableWithName(Food{}, "Foods").SetKeys(true, "FoodId")
 
