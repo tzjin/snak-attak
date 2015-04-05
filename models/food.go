@@ -25,6 +25,33 @@ func InsertFood(dbMap *gorp.DbMap, food *Food) error {
    return dbMap.Insert(food)
 }
 
+//Todo: figure out interfaces in go
+
+
+func GetFoodByHall(dbMap *gorp.DbMap, hall string) (foods *Food) {
+   err := dbMap.Select(&foods, "SELECT * FROM Foods where Hall = ?", hall)
+
+   if err != nil {
+      glog.Warningf("Can't get foods by dining hall: %v", err)
+   }
+   return
+}
+
+func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods *Food) {
+   err := dbMap.Select(&foods, "SELECT * FROM Foods where Meal = ?", meal)
+
+   if err != nil {
+      glog.Warningf("Can't get foods by meal: %v", err)
+   }
+   return
+}
+
+func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
+   food, err := dbMap.Get(Food{}, id)
+   comments = food.Comments
+   return
+}
+
 func GetDbMap(user, password, hostname, port, database string) *gorp.DbMap {
    // connect to db using standard Go database/sql API
    // use whatever database/sql driver you wish
