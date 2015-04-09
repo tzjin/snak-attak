@@ -3,20 +3,12 @@ package models
 import (
    "database/sql"
    "fmt"
-   "log"
 
    "code.google.com/p/go.crypto/bcrypt"
    "github.com/go-gorp/gorp"
    _ "github.com/go-sql-driver/mysql"
    "github.com/golang/glog"
 )
-
-type Food struct {
-   Id       int64    `db:"UserId"`
-   Name     string   //'name'
-   Hall     string   //'hall'
-   Rating   int32    //'rating'
-}
 
 type User struct {
    Id       int64 `db:"UserId"`
@@ -67,10 +59,4 @@ func GetDbMap(user, password, hostname, port, database string) *gorp.DbMap {
    checkErr(err, "Create tables failed")
 
    return dbMap
-}
-
-func checkErr(err error, msg string) {
-   if err != nil {
-      log.Fatalln(msg, err)
-   }
 }
