@@ -2,7 +2,7 @@ package controllers
 
 import (
    "fmt"
-   "encoding/json"
+   "time"
    "net/http"
 
    "github.com/zenazn/goji/web"
@@ -15,27 +15,26 @@ type ApiController struct {
 	system.Controller
 }
 
-type Message struct {
-   Id          int64
-   Name        string
-   Location    string
-   Votes       int64
-   // filter array?
-}
 
 func (controller *ApiController) hello(c web.C, w http.ResponseWriter, r *http.Request) {
    fmt.Fprintf(w, "Hello, %s!\n", c.URLParams["name"])
 }
 
-func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *http.Request) (string, int){
-   // send all data as json
-   // cmnts := []string{}
-   // fud := Food{1234, "Chicken Tenders", "Wilson", 23, "4/9/15", "Lunch", cmnts}
+func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *http.Request) {
+   // dbMap := controller.GetDbMap(c)
 
-   // b, err := json.Marshal(fud)
-   // return string(b[:]), http.StatusOK
+   var meal string
 
-   // return
+   // meal
+   if time.Now().Hour() < 14 {
+      meal = "Lunch"
+   } else {
+      meal = "Dinner"
+   }
+
+   msg := models.GetMealData()
+   fmt.Fprintf(w, "%s: %s\n", meal, msg)
+   // return msg, http.StatusOK
 }
 
 func (controller *ApiController) INC_counter(c web.C, w http.ResponseWriter, r *http.Request) {

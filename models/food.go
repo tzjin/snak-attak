@@ -1,23 +1,35 @@
 package models
 
 import (
-   "database/sql"
    "fmt"
    "log"
+   "bytes"
+   "encoding/json"
+
+   "database/sql"
 
    "github.com/go-gorp/gorp"
-   _ "github.com/go-sql-driver/mysql"
+   _ "github.com/lib/pq"
    "github.com/golang/glog"
 )
 
 type Food struct {
    FoodId      int64    `fid`
-   FoodName    string   //`fname`
+   FoodName    string   `Name`
    Hall        string   //`hall`
    Votes       int32    //`votes`
    Date        string   //`date`
    Meal        string   //`meal`
    Comments    []string //`comments`
+   // Filters?
+}
+
+type Message struct {
+   Id          int64
+   Name        string
+   Hall        string
+   Votes       int64
+   Filters     []string // includes 
 }
 
 func InsertFood(dbMap *gorp.DbMap, food *Food) error {
@@ -25,7 +37,6 @@ func InsertFood(dbMap *gorp.DbMap, food *Food) error {
 }
 
 //Todo: figure out interfaces in go
-
 
 // func GetFoodByHall(dbMap *gorp.DbMap, hall string) (foods *Food) {
 //    err := dbMap.Select(&foods, "SELECT * FROM Foods where Hall = ?", hall)
@@ -35,6 +46,40 @@ func InsertFood(dbMap *gorp.DbMap, food *Food) error {
 //    }
 //    return
 // }
+
+// func GetMealData(dbMap *gorp.DbMap, meal string) string {
+func GetMealData() string {
+   filt := []string{"Vegan", "Victorfood"}
+   tndrs := Message{1234, "Chicken Tenders", "Wilson", 23, filt}
+   foods := []Message{tndrs, tndrs, tndrs}
+
+   var msg bytes.Buffer
+   first := true
+
+   // foods := GetFoodByMeal(dbMap, meal)
+
+   // build json message
+   msg.WriteString( "[" );
+
+   for i := 0; i < len(foods); i++ {
+      if !first {
+         msg.WriteString( ", " )
+      }
+
+      b, err := json.Marshal(foods[i])
+
+      if err != nil {
+         glog.Warningf("Cannot encode json: %v", err)
+      }
+
+      msg.WriteString( string(b[:]) )
+      first = false
+   }
+
+   msg.WriteString( "]" );
+
+   return msg.String()
+}
 
 func GetFoodByID(dbMap *gorp.DbMap, foodid int64) (food *Food) {
    fud, err := dbMap.Get(Food{}, foodid)
@@ -83,7 +128,7 @@ func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
 //    return
 // }
 
-func GetFoodDbMap(user, password, hostname, port, database string) *gorp.DbMap {
+func GetDbMap(user, password, hostname, port, database string) *gorp.DbMap {
    // connect to db using standard Go database/sql API
    // use whatever database/sql driver you wish
    //TODO: Get user, password and database from config.

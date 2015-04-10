@@ -43,6 +43,7 @@ func main() {
    goji.Use(context.ClearHandler)
 
    controller := &controllers.MainController{}
+   apicontroller := &controllers.ApiController{}
 
    // Couple of files - in the real world you would use nginx to serve them.
    goji.Get("/robots.txt", http.FileServer(http.Dir(publicPath)))
@@ -66,7 +67,8 @@ func main() {
    goji.Get("/logout", application.Route(controller, "Logout"))
 
    // handlers for /api/* calls
-   // goji.Get("/api/get/:food", controller.GET_data)
+   // goji.Get("/api/get/", application.Route(apicontroller, "GET_data"))
+   goji.Get("/api/get/", apicontroller.GET_data)
    // goji.Post("/api/inc/:food", controller.INC_counter)
    // goji.Post("/api/dec/:food", controller.DEC_counter)
 

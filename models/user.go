@@ -39,7 +39,7 @@ func InsertUser(dbMap *gorp.DbMap, user *User) error {
    return dbMap.Insert(user)
 }
 
-func GetDbMap(user, password, hostname, port, database string) *gorp.DbMap {
+func GetUserDbMap(user, password, hostname, port, database string) *gorp.DbMap {
    // connect to db using standard Go database/sql API
    // use whatever database/sql driver you wish
    //TODO: Get user, password and database from config.
