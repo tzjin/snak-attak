@@ -3,6 +3,7 @@ package controllers
 import (
    "fmt"
    "time"
+   "strconv"
    "net/http"
 
    "github.com/zenazn/goji/web"
@@ -39,12 +40,28 @@ func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *htt
 
 func (controller *ApiController) INC_counter(c web.C, w http.ResponseWriter, r *http.Request) {
    // access database and incr
-   models.VoteById(dbMap, c.URLParams["food"], 1)
+   dbMap := controller.GetDbMap(c)
+
+   id, err := strconv.ParseInt(c.URLParams["food"], 10, 64)
+
+   if err != nil {
+
+   }
+
+   models.VoteById(dbMap, id, 1)
    fmt.Fprintf(w, "Bingo\n")
 }
 
 func (controller *ApiController) DEC_counter(c web.C, w http.ResponseWriter, r *http.Request) {
    // access database and decr
-   models.VoteById(dbMap, c.URLParams["food"], -1)
+   dbMap := controller.GetDbMap(c)
+
+   id, err := strconv.ParseInt(c.URLParams["food"], 10, 64)
+
+   if err != nil {
+      
+   }
+
+   models.VoteById(dbMap, id, -1)
    fmt.Fprintf(w, "Bingo\n")
 }

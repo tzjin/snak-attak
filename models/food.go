@@ -51,7 +51,7 @@ func InsertFood(dbMap *gorp.DbMap, food *Food) error {
 // func GetMealData(dbMap *gorp.DbMap, meal string) string {
 func GetMealData() string {
    filt := []string{"Vegan", "Victorfood"}
-   tndrs := Food{1234, "Chicken Tenders", "Wilson", 23, ,"December 31, 1999", "Dinner", filt}
+   tndrs := Food{1234, "Chicken Tenders", "Wilson", 23,"December 31, 1999", "Dinner", filt}
    foods := []Food{tndrs, tndrs, tndrs}
 
    var msg bytes.Buffer
@@ -82,7 +82,7 @@ func GetMealData() string {
    return msg.String()
 }
 
-func VoteById(dbMap *gorp.DbMap, foodid, vote int32) (food *Food) {
+func VoteById(dbMap *gorp.DbMap, foodid int64, vote int32) (food *Food) {
    fud, err := dbMap.Get(Food{}, foodid)
 
    if err != nil {
@@ -95,10 +95,14 @@ func VoteById(dbMap *gorp.DbMap, foodid, vote int32) (food *Food) {
    }
 
    food.Votes += vote
-   count, err := dbMap.update(&food)
+   count, err := dbMap.Update(&food)
 
    if err != nil {
       glog.Warningf("Update votes by ID failed: %v", err)
+   }
+
+   if count != 1 {
+      glog.Warningf("Too many foods updated: %v", err)
    }
 
    return 
