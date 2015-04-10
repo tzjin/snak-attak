@@ -14,8 +14,8 @@ import (
 )
 
 type Food struct {
-   FoodId      int64    `fid`
-   FoodName    string   `Name`
+   Id          int64    `fid`
+   Name        string   `FoodName`
    Hall        string   //`hall`
    Votes       int32    //`votes`
    Date        string   //`date`
@@ -24,6 +24,7 @@ type Food struct {
    // Filters?
 }
 
+// useful in future for not sending everthing
 type Message struct {
    Id          int64
    Name        string
@@ -50,8 +51,8 @@ func InsertFood(dbMap *gorp.DbMap, food *Food) error {
 // func GetMealData(dbMap *gorp.DbMap, meal string) string {
 func GetMealData() string {
    filt := []string{"Vegan", "Victorfood"}
-   tndrs := Message{1234, "Chicken Tenders", "Wilson", 23, filt}
-   foods := []Message{tndrs, tndrs, tndrs}
+   tndrs := Food{1234, "Chicken Tenders", "Wilson", 23, ,"December 31, 1999", "Dinner", filt}
+   foods := []Food{tndrs, tndrs, tndrs}
 
    var msg bytes.Buffer
    first := true
@@ -81,7 +82,7 @@ func GetMealData() string {
    return msg.String()
 }
 
-func GetFoodByID(dbMap *gorp.DbMap, foodid int64) (food *Food) {
+func VoteById(dbMap *gorp.DbMap, foodid, vote int32) (food *Food) {
    fud, err := dbMap.Get(Food{}, foodid)
 
    if err != nil {
@@ -93,10 +94,18 @@ func GetFoodByID(dbMap *gorp.DbMap, foodid int64) (food *Food) {
       // cannot convert interface
    }
 
+   food.Votes += vote
+   count, err := dbMap.update(&food)
+
+   if err != nil {
+      glog.Warningf("Update votes by ID failed: %v", err)
+   }
+
    return 
 }
 
 func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
+   // meal of today?
    _, err := dbMap.Select(&foods, "SELECT * FROM Foods where Meal = ?", meal)
 
    if err != nil {
@@ -120,13 +129,6 @@ func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
    comments = items.Comments
    return
 }
-
-// func GetVotesForID(dbMap *gorp.DbMap, id int64) (votes int32) {
-//    food, err := dbMap.Get(Food{}, id)
-//    items, ok := food.(*Food)
-//    votes = items.Votes
-//    return
-// }
 
 func GetDbMap(user, password, hostname, port, database string) *gorp.DbMap {
    // connect to db using standard Go database/sql API

@@ -39,8 +39,12 @@ func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *htt
 
 func (controller *ApiController) INC_counter(c web.C, w http.ResponseWriter, r *http.Request) {
    // access database and incr
+   models.VoteById(dbMap, c.URLParams["food"], 1)
+   fmt.Fprintf(w, "Bingo\n")
 }
 
 func (controller *ApiController) DEC_counter(c web.C, w http.ResponseWriter, r *http.Request) {
    // access database and decr
+   models.VoteById(dbMap, c.URLParams["food"], -1)
+   fmt.Fprintf(w, "Bingo\n")
 }
