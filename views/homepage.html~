@@ -56,8 +56,7 @@
 		</div>
   	</body>
 	</div>
-	<div class="table_borders">
-	<table class="u-max-full-width">
+	<table class="u-full-width">
 		<thead>
 			<tr>
 			<th>Item</th>
@@ -75,7 +74,20 @@
 			<td>G, V, Ve</td>
 			<td>Upvote/Downvote</td>
 			</tr>
+			<tr>
+			<td>Luke Cage</td>
+			<td>Whitman</td>
+			<td>Comments</td>
+			<td>G</td>
+			<td>Upvote/Downvote</td>
+			</tr>
+			<tr>
+			<td>Stephen Strange</td>
+			<td>Wilson/Butler</td>
+			<td>Comments</td>
+			<td></td>
+			<td>Upvote/Downvote</td>
+			</tr>
 		</tbody>
 	</table>
-	</div>
  </html>
