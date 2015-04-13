@@ -1,0 +1,26 @@
+#filter_section {
+	margin: 0 auto;
+	width: 90%;
+	min-width: 670px;
+}
+
+#name {
+	float: left;
+	text-align: center;
+	margin: 0 0 5px 0;
+	padding: 1px 0 0 0;
+	width: 100%;
+}
+
+#top {
+	background: #8160A0;
+	color: white;
+	min-height: 230px;
+	padding-top: 30px;
+}
+
+#table_borders {
+	margin: 0 auto;
+	width: 90%;
+	background: orange;
+}

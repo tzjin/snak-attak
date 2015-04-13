@@ -56,7 +56,8 @@
 		</div>
   	</body>
 	</div>
-	<table class="u-full-width">
+	<div class="table_borders">
+	<table class="u-max-full-width">
 		<thead>
 			<tr>
 			<th>Item</th>
@@ -76,4 +77,5 @@
 			</tr>
 		</tbody>
 	</table>
+	</div>
  </html>
