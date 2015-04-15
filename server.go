@@ -67,10 +67,9 @@ func main() {
 	goji.Get("/logout", application.Route(controller, "Logout"))
 
 	// handlers for /api/* calls
-	goji.Get("/api/get/", application.Route(apicontroller, "GET_data"))
-	//goji.Get("/api/get/", apicontroller.GET_data)
-	// goji.Post("/api/inc/:food", controller.INC_counter)
-	// goji.Post("/api/dec/:food", controller.DEC_counter)
+	goji.Get("/api/get/", apicontroller.GET_data)
+	goji.Post("/api/inc/:food", apicontroller.INC_counter)
+	goji.Post("/api/dec/:food", apicontroller.DEC_counter)
 
 	graceful.PostHook(func() {
 		application.Close()
