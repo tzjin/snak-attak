@@ -16,7 +16,7 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/pelletier/go-toml"
 	"github.com/zenazn/goji/web"
-	"snak-attak/models"
+	// "snak-attak/models"
 )
 
 type CsrfProtection struct {
@@ -49,7 +49,7 @@ func (application *Application) Init(filename *string) {
 		Secure:   config.Get("cookie.secure").(bool),
 	}
 	// dbConfig := config.Get("database").(*toml.TomlTree)
-	application.DbMap = models.GetDbMap()
+	// application.DbMap = models.GetDbMap()
 
 	application.CsrfProtection = &CsrfProtection{
 		Key:    config.Get("csrf.key").(string),
