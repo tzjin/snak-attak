@@ -12,8 +12,8 @@ import (
 	"github.com/go-utils/uslice"
 	"github.com/golang/glog"
 	"github.com/gorilla/sessions"
-	"github.com/tzjin/snak-attak/models"
 	"github.com/zenazn/goji/web"
+	"snak-attak/models"
 )
 
 // Makes sure templates are stored in the context

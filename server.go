@@ -7,8 +7,8 @@ import (
 	"github.com/golang/glog"
 	"github.com/gorilla/context"
 
-	"github.com/tzjin/snak-attak/controllers"
-	"github.com/tzjin/snak-attak/system"
+	"snak-attak/controllers"
+	"snak-attak/system"
 
 	"github.com/zenazn/goji"
 	"github.com/zenazn/goji/graceful"

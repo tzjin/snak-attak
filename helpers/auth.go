@@ -1,9 +1,9 @@
 package helpers
 
 import (
-	"golang.org/x/crypto/bcrypt"
 	"github.com/go-gorp/gorp"
-	"github.com/tzjin/snak-attak/models"
+	"golang.org/x/crypto/bcrypt"
+	"snak-attak/models"
 )
 
 func Login(dbMap *gorp.DbMap, email string, password string) (*models.User, error) {

@@ -14,9 +14,9 @@ import (
 	"github.com/go-gorp/gorp"
 	"github.com/golang/glog"
 	"github.com/gorilla/sessions"
-	// "github.com/tzjin/snak-attak/models"
 	"github.com/pelletier/go-toml"
 	"github.com/zenazn/goji/web"
+	"snak-attak/models"
 )
 
 type CsrfProtection struct {

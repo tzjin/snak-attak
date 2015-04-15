@@ -1,5 +1,5 @@
 {
-	"ImportPath": "333/snak-server",
+	"ImportPath": "snak-attak",
 	"GoVersion": "go1.4.2",
 	"Deps": [
 		{
@@ -38,33 +38,14 @@
 			"Rev": "c8fb5963af5ff7fda6a44132ba4c0d8376e20257"
 		},
 		{
-			"ImportPath": "github.com/haruyama/golang-goji-sample/models",
-			"Rev": "b6394953dec967f021ead50e68b4a08716fadd38"
-		},
-		{
-			"ImportPath": "github.com/haruyama/golang-goji-sample/system",
-			"Rev": "b6394953dec967f021ead50e68b4a08716fadd38"
+			"ImportPath": "github.com/lib/pq",
+			"Comment": "go1.0-cutoff-38-ge51fec1",
+			"Rev": "e51fec16be7847e24d0270a5ce1f95cf2482b5e9"
 		},
 		{
 			"ImportPath": "github.com/pelletier/go-toml",
 			"Comment": "v0.2.1-16-g42e7853",
 			"Rev": "42e7853ef6ea4cfebab291821ec0a8ce37be7340"
-		},
-		{
-			"ImportPath": "github.com/tzjin/snak-attak/controllers",
-			"Rev": "7710447439fcb1f08088d05b4f91d603b0b44ab5"
-		},
-		{
-			"ImportPath": "github.com/tzjin/snak-attak/helpers",
-			"Rev": "7710447439fcb1f08088d05b4f91d603b0b44ab5"
-		},
-		{
-			"ImportPath": "github.com/tzjin/snak-attak/models",
-			"Rev": "7710447439fcb1f08088d05b4f91d603b0b44ab5"
-		},
-		{
-			"ImportPath": "github.com/tzjin/snak-attak/system",
-			"Rev": "7710447439fcb1f08088d05b4f91d603b0b44ab5"
 		},
 		{
 			"ImportPath": "github.com/zenazn/goji",

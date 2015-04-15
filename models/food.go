@@ -3,7 +3,6 @@ package models
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"log"
 
 	"database/sql"
@@ -138,7 +137,7 @@ func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
 func GetDbMap() *gorp.DbMap {
 	// connect to db using standard Go database/sql API
 	// use whatever database/sql driver you wish
-	checkErr(err, "postgres.Open failed")
+	//checkErr(err, "postgres.Open failed")
 	db, err := sql.Open("mysql", os.Getenv("DATABASE_URL"))
 	checkErr(err, "sql.Open failed")
 
