@@ -10,9 +10,9 @@ import (
 
 	"github.com/golang/glog"
 
-	"snak-attak/helpers"
-	"snak-attak/models"
-	"snak-attak/system"
+	"sniksnak/helpers"
+	"sniksnak/models"
+	"sniksnak/system"
 )
 
 type MainController struct {

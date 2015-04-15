@@ -8,8 +8,8 @@ import (
 
 	"github.com/zenazn/goji/web"
 
-	"snak-attak/models"
-	"snak-attak/system"
+	"sniksnak/models"
+	"sniksnak/system"
 )
 
 type ApiController struct {

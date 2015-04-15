@@ -3,7 +3,7 @@ package helpers
 import (
 	"github.com/go-gorp/gorp"
 	"golang.org/x/crypto/bcrypt"
-	"snak-attak/models"
+	"sniksnak/models"
 )
 
 func Login(dbMap *gorp.DbMap, email string, password string) (*models.User, error) {

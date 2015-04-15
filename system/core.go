@@ -16,7 +16,7 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/pelletier/go-toml"
 	"github.com/zenazn/goji/web"
-	// "snak-attak/models"
+	// "sniksnak/models"
 )
 
 type CsrfProtection struct {

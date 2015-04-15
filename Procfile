@@ -1,1 +1,1 @@
-web:snak-attak
+web:sniksnak

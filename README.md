@@ -1,4 +1,4 @@
-Snak-Attak
+sniksnak
 ==========
 
 Serves the website, and provides the REST API.

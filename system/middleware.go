@@ -13,7 +13,7 @@ import (
 	"github.com/golang/glog"
 	"github.com/gorilla/sessions"
 	"github.com/zenazn/goji/web"
-	"snak-attak/models"
+	"sniksnak/models"
 )
 
 // Makes sure templates are stored in the context
