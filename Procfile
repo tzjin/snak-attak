@@ -1,1 +1,1 @@
-web: sniksnak
+web: sniksnak -bind :$PORT
