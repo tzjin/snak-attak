@@ -1,1 +1,1 @@
-web:snak-server
+web:snak-attak
