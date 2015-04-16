@@ -31,14 +31,15 @@
       </div>
       </div>
    </div>
+   <div class="container">
    <table class="u-full-width">
       <thead>
          <tr>
             <th> </th>
             <th>Item</th>
             <th>Dining Hall</th>
-            <th>    </th>
             <th>Dietary Options</th>
+            <th>Votes</th>
             <th>    </th>
          </tr>
       </thead>
@@ -50,31 +51,32 @@
             <td>{{$element.Hall}}</td>
             <td>
                {{range $filt:=$element.Comments}}
-                  {{$filt}} 
+                  {{$filt}}, 
                {{end}}
             </td>
             <td class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</td>
-            <td class='upvote' data-food-id='{{$element.Id}}'>Yayy</td>
-            <td class='downvote' data-food-id='{{$element.Id}}'>Boo</td>
+            <td class='upvote' data-food-id='{{$element.Id}}'>Yum</td>
+            <td class='downvote' data-food-id='{{$element.Id}}'>Ick</td>
          </tr>
          {{end}}
       </tbody>
    </table>
+   </div>
 
 
    <script type="text/javascript">
       $(document).ready(function() {
          $('.upvote').click(function() {
             var id = $(this).data('food-id')
-            alert(id)
-            $.post( "api/inc/" + id);
-            $('.votes, [data-food-id=' + id + ']').html()
-            // update vote count
+            var vote = $(this).closest("tr").find('.votes')
+            vote.html(parseInt(vote.text())+1);
+            $.post( "/api/inc/" + id);
          });
          $('.downvote').click(function() {
-            alert($(this).data('food-id'))
-            $.post( "api/dec/" + $(this).data('food-id'));
-            // update vote count
+            var id = $(this).data('food-id')
+            var vote = $(this).closest("tr").find('.votes')
+            vote.html(parseInt(vote.text())-1);
+            $.post("/api/dec/" + id);
          });
       });
    </script>
