@@ -44,15 +44,38 @@
       </thead>
       <tbody>
          {{range $element := .Foods}}
-         <tr>
+         <tr id='{{$element.Id}}' >
             <td> </td>
             <td>{{$element.Name}}</td>
             <td>{{$element.Hall}}</td>
-            <td>Comments</td>
-            <td></td>
-            <td>{{$element.Votes}}</td>
+            <td>
+               {{range $filt:=$element.Comments}}
+                  {{$filt}} 
+               {{end}}
+            </td>
+            <td class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</td>
+            <td class='upvote' data-food-id='{{$element.Id}}'>Yayy</td>
+            <td class='downvote' data-food-id='{{$element.Id}}'>Boo</td>
          </tr>
          {{end}}
       </tbody>
    </table>
+
+
+   <script type="text/javascript">
+      $(document).ready(function() {
+         $('.upvote').click(function() {
+            var id = $(this).data('food-id')
+            alert(id)
+            $.post( "api/inc/" + id);
+            $('.votes, [data-food-id=' + id + ']').html()
+            // update vote count
+         });
+         $('.downvote').click(function() {
+            alert($(this).data('food-id'))
+            $.post( "api/dec/" + $(this).data('food-id'));
+            // update vote count
+         });
+      });
+   </script>
 {{end}}

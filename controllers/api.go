@@ -46,7 +46,7 @@ func (controller *ApiController) INC_counter(c web.C, w http.ResponseWriter, r *
 
 	}
 
-	models.VoteById(dbMap, id, 1)
+	models.VoteById(dbMap, id, true)
 	fmt.Fprintf(w, "Bingo\n")
 }
 
@@ -60,6 +60,6 @@ func (controller *ApiController) DEC_counter(c web.C, w http.ResponseWriter, r *
 
 	}
 
-	models.VoteById(dbMap, id, -1)
+	models.VoteById(dbMap, id, false)
 	fmt.Fprintf(w, "Bingo\n")
 }

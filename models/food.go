@@ -78,7 +78,7 @@ func GetMealData(dbMap *gorp.DbMap, meal string) string {
 	return msg.String()
 }
 
-func VoteById(dbMap *gorp.DbMap, foodid int64, vote int32) (food *Food) {
+func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 	fud, err := dbMap.Get(Food{}, foodid)
 
 	if err != nil {
@@ -90,7 +90,11 @@ func VoteById(dbMap *gorp.DbMap, foodid int64, vote int32) (food *Food) {
 		// cannot convert interface
 	}
 
-	food.Votes += vote
+	if up {
+		food.Votes++
+	} else {
+		food.Votes--
+	}
 	count, err := dbMap.Update(&food)
 
 	if err != nil {

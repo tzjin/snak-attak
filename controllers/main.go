@@ -29,7 +29,7 @@ func (controller *MainController) Index(c web.C, r *http.Request) (string, int) 
 	c.Env["IsIndex"] = true
 	c.Env["Foods"] = models.GetFoodByMeal(nil,"Lunch");
 
-	c.Env["Title"] = "Default Project - free Go website project template"
+	c.Env["Title"] = "SnikSnak"
 	c.Env["Content"] = template.HTML(widgets)
 
 	return helpers.Parse(t, "main", c.Env), http.StatusOK
