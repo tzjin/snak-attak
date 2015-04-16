@@ -32,9 +32,8 @@ func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *htt
 		meal = "Dinner"
 	}
 
-	msg := models.GetMealData()
-	fmt.Fprintf(w, "%s: %s\n", meal, msg)
-	// return msg, http.StatusOK
+	msg := models.GetMealData(nil, meal)
+	fmt.Fprintf(w, "%s\n", msg)
 }
 
 func (controller *ApiController) INC_counter(c web.C, w http.ResponseWriter, r *http.Request) {

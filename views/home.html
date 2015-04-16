@@ -43,30 +43,16 @@
          </tr>
       </thead>
       <tbody>
+         {{range $element := .Foods}}
          <tr>
             <td> </td>
-            <td>Matt Murdock</td>
-            <td>Forbes</td>
-            <td>Comments</td>
-            <td>G, V, Ve</td>
-            <td>Upvote/Downvote</td>
-         </tr>
-         <tr>
-            <td> </td>
-            <td>Luke Cage</td>
-            <td>Whitman</td>
-            <td>Comments</td>
-            <td>G</td>
-            <td>Upvote/Downvote</td>
-         </tr>
-         <tr>
-            <td> </td>
-            <td>Stephen Strange</td>
-            <td>Wilson/Butler</td>
+            <td>{{$element.Name}}</td>
+            <td>{{$element.Hall}}</td>
             <td>Comments</td>
             <td></td>
-            <td>Upvote/Downvote</td>
+            <td>{{$element.Votes}}</td>
          </tr>
+         {{end}}
       </tbody>
    </table>
 {{end}}

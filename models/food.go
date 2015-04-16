@@ -48,16 +48,12 @@ func InsertFood(dbMap *gorp.DbMap, food *Food) error {
 //    return
 // }
 
-// func GetMealData(dbMap *gorp.DbMap, meal string) string {
-func GetMealData() string {
-	filt := []string{"Vegan", "Victorfood"}
-	tndrs := Food{1234, "Chicken Tenders", "Wilson", 23, "December 31, 1999", "Dinner", filt}
-	foods := []Food{tndrs, tndrs, tndrs}
+func GetMealData(dbMap *gorp.DbMap, meal string) string {
 
 	var msg bytes.Buffer
 	first := true
 
-	// foods := GetFoodByMeal(dbMap, meal)
+	foods := GetFoodByMeal(dbMap, meal)
 
 	// build json message
 	msg.WriteString("[")
@@ -110,11 +106,20 @@ func VoteById(dbMap *gorp.DbMap, foodid int64, vote int32) (food *Food) {
 
 func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 	// meal of today?
-	_, err := dbMap.Select(&foods, "SELECT * FROM Foods where Meal = ?", meal)
+	// _, err := dbMap.Select(&foods, "SELECT * FROM Foods where Meal = ?", meal)
 
-	if err != nil {
-		glog.Warningf("Can't get foods by meal: %v", err)
-	}
+	// if err != nil {
+	// 	glog.Warningf("Can't get foods by meal: %v", err)
+	// }
+
+
+	filt := []string{"Vegan", "Victorfood"}
+	tndrs := &Food{1234, "Chicken Tenders", "Wilson", 23, "December 31, 1999", "Dinner", filt}
+	salad := &Food{1235, "Chicken Ceasar Salad", "Forbes", 4, "December 31, 1999", "Dinner", filt}
+	brger := &Food{1236, "Hamburger", "Whitman", 12, "December 31, 1999", "Lunch", filt}
+	fries := &Food{1236, "French Fries", "RoMa", 18, "December 31, 1999", "Lunch", filt}
+	foods = []*Food{tndrs, salad, brger, fries}
+
 	return
 }
 

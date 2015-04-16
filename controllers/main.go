@@ -27,6 +27,7 @@ func (controller *MainController) Index(c web.C, r *http.Request) (string, int) 
 
 	// With that kind of flags template can "figure out" what route is being rendered
 	c.Env["IsIndex"] = true
+	c.Env["Foods"] = models.GetFoodByMeal(nil,"Lunch");
 
 	c.Env["Title"] = "Default Project - free Go website project template"
 	c.Env["Content"] = template.HTML(widgets)
