@@ -14,7 +14,7 @@ import (
 )
 
 type Food struct {
-	Id       int64    `fid`
+	FoodId   int64    `FoodIid`
 	Name     string   `FoodName`
 	Hall     string   //`hall`
 	Votes    int32    //`votes`

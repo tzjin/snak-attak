@@ -3,6 +3,12 @@ Database notes
 Install local psql
   /Applications/Postgres.app/Contents/Versions/9.4/bin//psql
 
+Postgres references:
+  Arrays: http://www.postgresql.org/docs/9.1/static/arrays.html
+  Data definitions: http://www.postgresql.org/docs/9.4/static/ddl.html
+  Serial: http://www.postgresql.org/docs/9.4/static/datatype-numeric.html#DATATYPE-SERIAL
+  
+
 get info about database:
   heroku pg:info --app sniksnak
 
