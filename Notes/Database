@@ -1,0 +1,33 @@
+Database notes
+
+Install local psql
+  /Applications/Postgres.app/Contents/Versions/9.4/bin//psql
+
+get info about database:
+  heroku pg:info --app sniksnak
+
+  === HEROKU_POSTGRESQL_ROSE_URL (DATABASE_URL)
+  Plan:        Dev
+  Status:      Available
+  Connections: 0/20
+  PG Version:  9.3.6
+  Created:     2015-03-30 11:00 UTC
+  Data Size:   6.2 MB
+  Tables:      0
+  Rows:        0/10000 (In compliance)
+  Fork/Follow: Unsupported
+  Rollback:    Unsupported
+
+pull into local database:
+  heroku db:pull
+
+start postgres console:
+  heroku pg:psql
+
+  view tables:
+    \d
+  view specific table
+    \d tablename
+  select from table:
+    select * from tablename;
+

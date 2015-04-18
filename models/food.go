@@ -116,7 +116,6 @@ func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 	// 	glog.Warningf("Can't get foods by meal: %v", err)
 	// }
 
-
 	filt := []string{"Vegan", "Victorfood"}
 	tndrs := &Food{1234, "Chicken Tenders", "Wilson", 23, "December 31, 1999", "Dinner", filt}
 	salad := &Food{1235, "Chicken Ceasar Salad", "Forbes", 4, "December 31, 1999", "Dinner", filt}
