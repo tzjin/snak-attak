@@ -14,13 +14,13 @@ import (
 )
 
 type Food struct {
-	FoodId   int64    `FoodIid`
-	Name     string   `FoodName`
-	Hall     string   //`hall`
-	Votes    int32    //`votes`
-	Date     string   //`date`
-	Meal     string   //`meal`
-	Comments []string //`comments`
+	FoodId   int64   `FoodIid`
+	Name     string  `FoodName`
+	Hall     string  //`hall`
+	Votes    int32   //`votes`
+	Date     string  //`date`
+	Meal     string  //`meal`
+	Comments []int32 //`comments`
 	// Filters?
 }
 
@@ -110,18 +110,18 @@ func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 
 func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 	// meal of today?
-	// _, err := dbMap.Select(&foods, "SELECT * FROM Foods where Meal = ?", meal)
+	_, err := dbMap.Select(&foods, "SELECT * FROM Foods where Meal = ?", meal)
 
-	// if err != nil {
-	// 	glog.Warningf("Can't get foods by meal: %v", err)
-	// }
+	if err != nil {
+		glog.Warningf("Can't get foods by meal: %v", err)
+	}
 
-	filt := []string{"Vegan", "Victorfood"}
+	/*filt := []string{"Vegan", "Victorfood"}
 	tndrs := &Food{1234, "Chicken Tenders", "Wilson", 23, "December 31, 1999", "Dinner", filt}
 	salad := &Food{1235, "Chicken Ceasar Salad", "Forbes", 4, "December 31, 1999", "Dinner", filt}
 	brger := &Food{1236, "Hamburger", "Whitman", 12, "December 31, 1999", "Lunch", filt}
 	fries := &Food{1236, "French Fries", "RoMa", 18, "December 31, 1999", "Lunch", filt}
-	foods = []*Food{tndrs, salad, brger, fries}
+	foods = []*Food{tndrs, salad, brger, fries}*/
 
 	return
 }

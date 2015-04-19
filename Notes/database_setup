@@ -23,6 +23,8 @@ sniksnak::ROSE=> \d foods
  foodid   | integer               | not null default nextval('foods_foodid_seq'::regclass)
 Indexes:
     "foods_pkey" PRIMARY KEY, btree (foodid)
-    
+
 Inserting data:
 INSERT INTO foods (fname, hall, date, meal) VALUES('Chicken tenders', 'forbes', 'today', 'l');
+INSERT INTO foods (fname, hall, date, meal) VALUES('Black bean hummus', 'wilcox', 'today', 'd');
+INSERT INTO foods (fname, hall, date, meal) VALUES('General Tsos Chicken', 'wilcox', 'today', 'l');
