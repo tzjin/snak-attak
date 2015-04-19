@@ -3,7 +3,6 @@ package controllers
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/zenazn/goji/web"
@@ -27,9 +26,9 @@ func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *htt
 
 	// meal
 	if time.Now().Hour() < 14 {
-		meal = "Lunch"
+		meal = "l"
 	} else {
-		meal = "Dinner"
+		meal = "d"
 	}
 
 	msg := models.GetMealData(nil, meal)
@@ -40,13 +39,9 @@ func (controller *ApiController) INC_counter(c web.C, w http.ResponseWriter, r *
 	// access database and incr
 	dbMap := controller.GetDbMap(c)
 
-	id, err := strconv.ParseInt(c.URLParams["food"], 10, 64)
+	name := c.URLParams["food"]
 
-	if err != nil {
-
-	}
-
-	models.VoteById(dbMap, id, true)
+	models.VoteByName(dbMap, name, true)
 	fmt.Fprintf(w, "Bingo\n")
 }
 
@@ -54,12 +49,8 @@ func (controller *ApiController) DEC_counter(c web.C, w http.ResponseWriter, r *
 	// access database and decr
 	dbMap := controller.GetDbMap(c)
 
-	id, err := strconv.ParseInt(c.URLParams["food"], 10, 64)
+	name := c.URLParams["food"]
 
-	if err != nil {
-
-	}
-
-	models.VoteById(dbMap, id, false)
+	models.VoteByName(dbMap, name, false)
 	fmt.Fprintf(w, "Bingo\n")
 }

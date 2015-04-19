@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
+	"time"
 
 	"database/sql"
 	"os"
@@ -14,13 +15,13 @@ import (
 )
 
 type Food struct {
-	FoodId   int64   `FoodIid`
-	Name     string  `FoodName`
-	Hall     string  //`hall`
-	Votes    int32   //`votes`
-	Date     string  //`date`
-	Meal     string  //`meal`
-	Comments []int32 //`comments`
+	FoodId   int    `FoodIid`
+	Name     string `FoodName`
+	Hall     string `hall`
+	Votes    int    `votes`
+	Date     string `date`
+	Meal     string `meal`
+	Comments []int  `comments`
 	// Filters?
 }
 
@@ -78,14 +79,15 @@ func GetMealData(dbMap *gorp.DbMap, meal string) string {
 	return msg.String()
 }
 
-func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
-	fud, err := dbMap.Get(Food{}, foodid)
+func VoteByName(dbMap *gorp.DbMap, foodname string, up bool) (food *Food) {
+	// Today's date
+	t := time.Now().Local()
+	date := t.Format("2006-01-02")
 
-	if err != nil {
-		glog.Warningf("Can't get foods by id: %v", err)
-	}
+	// Get foods that match name + today's date
+	fuds, err := dbMap.Select(Food{}, "SELECT * FROM Foods where fname = ? and date = ? ", foodname, date)
 
-	food, ok := fud.(*Food)
+	food, ok := fuds[0].(*Food)
 	if !ok {
 		// cannot convert interface
 	}
@@ -116,17 +118,10 @@ func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 		glog.Warningf("Can't get foods by meal: %v", err)
 	}
 
-	/*filt := []string{"Vegan", "Victorfood"}
-	tndrs := &Food{1234, "Chicken Tenders", "Wilson", 23, "December 31, 1999", "Dinner", filt}
-	salad := &Food{1235, "Chicken Ceasar Salad", "Forbes", 4, "December 31, 1999", "Dinner", filt}
-	brger := &Food{1236, "Hamburger", "Whitman", 12, "December 31, 1999", "Lunch", filt}
-	fries := &Food{1236, "French Fries", "RoMa", 18, "December 31, 1999", "Lunch", filt}
-	foods = []*Food{tndrs, salad, brger, fries}*/
-
 	return
 }
 
-func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
+/*func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
 	food, err := dbMap.Get(Food{}, id)
 
 	if err != nil {
@@ -140,7 +135,7 @@ func GetCommentsForID(dbMap *gorp.DbMap, id int64) (comments []string) {
 	}
 	comments = items.Comments
 	return
-}
+}*/
 
 func GetDbMap() *gorp.DbMap {
 	// connect to db using standard Go database/sql API
@@ -154,7 +149,10 @@ func GetDbMap() *gorp.DbMap {
 
 	// add a table, setting the table name to 'Foods' and
 	// specifying that the FoodId property is an auto incrementing PK
-	dbMap.AddTableWithName(Food{}, "Foods").SetKeys(true, "FoodId")
+	t := dbMap.AddTableWithName(Food{}, "Foods").SetKeys(true, "FoodId")
+	t.ColMap("foodname").SetMaxSize(30)
+	t.ColMap("foodname").SetMaxSize(20)
+	t.ColMap("meal").SetMaxSize(1)
 
 	// create the table. in a production system you'd generally
 	// use a migration tool, or create the tables via scripts
