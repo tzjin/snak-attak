@@ -10,19 +10,19 @@ CREATE TABLE Foods (
 );
 
 yields:
-sniksnak::ROSE-> \d foods
-             Table "public.foods"
-  Column  |         Type          | Modifiers 
-----------+-----------------------+-----------
- foodid   | integer               | not null
+sniksnak::ROSE=> \d foods
+                                   Table "public.foods"
+  Column  |         Type          |                       Modifiers                        
+----------+-----------------------+--------------------------------------------------------
  fname    | character varying(30) | not null
  hall     | character varying(20) | 
  votes    | integer               | default 0
  date     | date                  | 
  meal     | character(1)          | 
  comments | integer[]             | 
+ foodid   | integer               | not null default nextval('foods_foodid_seq'::regclass)
 Indexes:
     "foods_pkey" PRIMARY KEY, btree (foodid)
-
+    
 Inserting data:
 INSERT INTO foods (fname, hall, date, meal) VALUES('Chicken tenders', 'forbes', 'today', 'l');
