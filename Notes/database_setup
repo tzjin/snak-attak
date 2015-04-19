@@ -1,5 +1,6 @@
+Command:
 CREATE TABLE Foods (
-  foodid  integer   PRIMARY KEY, 
+  foodid  serial   PRIMARY KEY, 
   fname   varchar(30) NOT NULL,
   hall    varchar(20),
   votes   integer   DEFAULT 0,  
@@ -7,3 +8,21 @@ CREATE TABLE Foods (
   meal    char(1),  
   comments  integer[] 
 );
+
+yields:
+sniksnak::ROSE-> \d foods
+             Table "public.foods"
+  Column  |         Type          | Modifiers 
+----------+-----------------------+-----------
+ foodid   | integer               | not null
+ fname    | character varying(30) | not null
+ hall     | character varying(20) | 
+ votes    | integer               | default 0
+ date     | date                  | 
+ meal     | character(1)          | 
+ comments | integer[]             | 
+Indexes:
+    "foods_pkey" PRIMARY KEY, btree (foodid)
+
+Inserting data:
+INSERT INTO foods (fname, hall, date, meal) VALUES('Chicken tenders', 'forbes', 'today', 'l');
