@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
+	"fmt"
 	"time"
 
 	"database/sql"
@@ -15,23 +16,14 @@ import (
 )
 
 type Food struct {
-	FoodId   int    `FoodIid`
-	Name     string `FoodName`
-	Hall     string `hall`
-	Votes    int    `votes`
-	Date     string `date`
-	Meal     string `meal`
-	Comments []int  `comments`
+	FoodId   int    //`foodid`
+	Name     string //`fname`
+	Hall     string //`hall`
+	Votes    int    //`votes`
+	Date     string //`date`
+	Meal     string //`meal`
+	Comments []int  //`comments`
 	// Filters?
-}
-
-// useful in future for not sending everthing
-type Message struct {
-	Id      int64
-	Name    string
-	Hall    string
-	Votes   int64
-	Filters []string // includes
 }
 
 func InsertFood(dbMap *gorp.DbMap, food *Food) error {
@@ -74,7 +66,7 @@ func VoteByName(dbMap *gorp.DbMap, foodname string, up bool) (food *Food) {
 	date := t.Format("2006-01-02")
 
 	// Get foods that match name + today's date
-	fuds, err := dbMap.Select(Food{}, "SELECT * FROM Foods where fname = ? and date = ? ", foodname, date)
+	fuds, err := dbMap.Select(Food{}, "SELECT * FROM Foods where fname = $1 and date = $2 ", foodname, date)
 
 	food, ok := fuds[0].(*Food)
 	if !ok {
@@ -99,9 +91,12 @@ func VoteByName(dbMap *gorp.DbMap, foodname string, up bool) (food *Food) {
 	return
 }
 
-func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
+func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []Food) {
 	// meal of today?
-	_, err := dbMap.Select(&foods, "SELECT * FROM Foods where Meal = ?", meal)
+	var food Food
+	// _, err := dbMap.Select(&foods, "SELECT * FROM foods") // order by votes
+	err := dbMap.SelectOne(&food, "SELECT * FROM foods where foodid=$1", 1) 
+	foods = []Food{food}
 
 	if err != nil {
 		glog.Warningf("Can't get foods by meal: %v", err)
@@ -116,23 +111,35 @@ func GetDbMap() *gorp.DbMap {
 	// connect to db using standard Go database/sql API
 	// use whatever database/sql driver you wish
 	//checkErr(err, "postgres.Open failed")
-	db, err := sql.Open("mysql", os.Getenv("DATABASE_URL"))
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	checkErr(err, "sql.Open failed")
 
 	// construct a gorp DbMap
-	dbMap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{Engine: "InnoDB", Encoding: "UTF8MB4"}}
+	dbMap := &gorp.DbMap{Db: db, Dialect: gorp.PostgresDialect{}}
 
 	// add a table, setting the table name to 'Foods' and
 	// specifying that the FoodId property is an auto incrementing PK
-	t := dbMap.AddTableWithName(Food{}, "Foods").SetKeys(true, "FoodId")
-	t.ColMap("foodname").SetMaxSize(30)
-	t.ColMap("foodname").SetMaxSize(20)
-	t.ColMap("meal").SetMaxSize(1)
+	t := dbMap.AddTableWithName(Food{}, "foods").SetKeys(true, "FoodId")
+	t.ColMap("Name").SetMaxSize(30)
+	// t.ColMap("foodname").SetMaxSize(20)
+	t.ColMap("Meal").SetMaxSize(1)
 
 	// create the table. in a production system you'd generally
 	// use a migration tool, or create the tables via scripts
 	err = dbMap.CreateTablesIfNotExists()
 	checkErr(err, "Create tables failed")
+
+	cmnts := []int{0,0}
+	food := Food { FoodId: 10, Name: "Test Fries", Hall: "wilcox", Votes: 1, Date: "today", Meal: "l", Comments: cmnts }
+	err = dbMap.Insert(&food)
+
+
+	var foods []Food
+	_, err = dbMap.Select(&foods, "SELECT * FROM foods")
+	fmt.Printf("%d\n",len(foods))
+	for x, p := range foods {
+		fmt.Printf("    %d: %v\n", x, p)
+	}
 
 	return dbMap
 }

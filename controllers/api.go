@@ -20,7 +20,8 @@ func (controller *ApiController) hello(c web.C, w http.ResponseWriter, r *http.R
 }
 
 func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *http.Request) {
-	//dbMap := controller.GetDbMap(c)
+	
+	dbMap := controller.GetDbMap(c)
 
 	var meal string
 
@@ -30,8 +31,9 @@ func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *htt
 	} else {
 		meal = "d"
 	}
-
-	msg := models.GetMealData(nil, meal)
+	
+	msg := models.GetMealData(dbMap, meal)
+	
 	fmt.Fprintf(w, "%s\n", msg)
 }
 

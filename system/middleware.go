@@ -35,13 +35,13 @@ func (application *Application) ApplySessions(c *web.C, h http.Handler) http.Han
 	return http.HandlerFunc(fn)
 }
 
-// func (application *Application) ApplyDbMap(c *web.C, h http.Handler) http.Handler {
-// 	fn := func(w http.ResponseWriter, r *http.Request) {
-// 		c.Env["DbMap"] = application.DbMap
-// 		h.ServeHTTP(w, r)
-// 	}
-// 	return http.HandlerFunc(fn)
-// }
+func (application *Application) ApplyDbMap(c *web.C, h http.Handler) http.Handler {
+	fn := func(w http.ResponseWriter, r *http.Request) {
+		c.Env["DbMap"] = application.DbMap
+		h.ServeHTTP(w, r)
+	}
+	return http.HandlerFunc(fn)
+}
 
 func (application *Application) ApplyAuth(c *web.C, h http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
