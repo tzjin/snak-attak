@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
-	"fmt"
 	"time"
 
 	"database/sql"
@@ -16,13 +15,14 @@ import (
 )
 
 type Food struct {
-	FoodId   int    //`foodid`
-	Name     string //`fname`
-	Hall     string //`hall`
-	Votes    int    //`votes`
-	Date     string //`date`
-	Meal     string //`meal`
-	Comments []int  //`comments`
+	FoodId   int    //`db:"foodid"`
+	Name     string //`db:"fname"`
+	Hall     string //`db:"hall`
+	Votes    int    //`db:"votes`
+	Date     string //`db:"date`
+	Meal     string //`db:"meal`
+	Filters  string //'db:"filters
+	Comments string  //`comments`
 	// Filters?
 }
 
@@ -91,12 +91,12 @@ func VoteByName(dbMap *gorp.DbMap, foodname string, up bool) (food *Food) {
 	return
 }
 
-func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []Food) {
+func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 	// meal of today?
-	var food Food
-	// _, err := dbMap.Select(&foods, "SELECT * FROM foods") // order by votes
-	err := dbMap.SelectOne(&food, "SELECT * FROM foods where foodid=$1", 1) 
-	foods = []Food{food}
+	// var food Food
+	_, err := dbMap.Select(&foods, "SELECT * FROM foods ORDER BY votes DESC") // order by votes
+	// err := dbMap.SelectOne(&food, "SELECT * FROM foods where foodid=$1", 1) 
+	// foods = []Food{food}
 
 	if err != nil {
 		glog.Warningf("Can't get foods by meal: %v", err)
@@ -129,17 +129,15 @@ func GetDbMap() *gorp.DbMap {
 	err = dbMap.CreateTablesIfNotExists()
 	checkErr(err, "Create tables failed")
 
-	cmnts := []int{0,0}
-	food := Food { FoodId: 10, Name: "Test Fries", Hall: "wilcox", Votes: 1, Date: "today", Meal: "l", Comments: cmnts }
-	err = dbMap.Insert(&food)
+	// food := Food {Name: "Waffle Fries", Hall: "roma", Votes: 48, Date: "today", Meal: "d" }
+	// err = dbMap.Insert(&food)
 
-
-	var foods []Food
-	_, err = dbMap.Select(&foods, "SELECT * FROM foods")
-	fmt.Printf("%d\n",len(foods))
-	for x, p := range foods {
-		fmt.Printf("    %d: %v\n", x, p)
-	}
+	// var foods []Food
+	// _, err = dbMap.Select(&foods, "SELECT * FROM foods")
+	// fmt.Printf("%d\n",len(foods))
+	// for x, p := range foods {
+	// 	fmt.Printf("    %d: %v\n", x, p)
+	// }
 
 	return dbMap
 }
