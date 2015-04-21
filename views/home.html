@@ -46,14 +46,14 @@
       </thead>
       <tbody>
          {{range $element := .Foods}}
-         <tr id='{{$element.FoodId}}' >
+         <tr id='{{$element.Id}}' >
             <td> </td>
             <td>{{$element.Name}}</td>
             <td>{{$element.Hall}}</td>
             <td>{{$element.Filters}}</td>
-            <td class='votes' data-food-id='{{$element.FoodId}}'>{{$element.Votes}}</td>
-            <td class='upvote' data-food-id='{{$element.FoodId}}'>Yum</td>
-            <td class='downvote' data-food-id='{{$element.FoodId}}'>Ick</td>
+            <td class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</td>
+            <td class='upvote' data-food-id='{{$element.Id}}'>Yum</td>
+            <td class='downvote' data-food-id='{{$element.Id}}'>Ick</td>
          </tr>
          {{end}}
       </tbody>

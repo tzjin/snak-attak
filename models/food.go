@@ -15,7 +15,7 @@ import (
 )
 
 type Food struct {
-	FoodId   int    //`db:"foodid"`
+	Id   		int    //`db:"foodid"`
 	Name     string //`db:"fname"`
 	Hall     string //`db:"hall`
 	Votes    int    //`db:"votes`
@@ -93,10 +93,7 @@ func VoteByName(dbMap *gorp.DbMap, foodname string, up bool) (food *Food) {
 
 func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 	// meal of today?
-	// var food Food
-	_, err := dbMap.Select(&foods, "SELECT * FROM foods ORDER BY votes DESC") // order by votes
-	// err := dbMap.SelectOne(&food, "SELECT * FROM foods where foodid=$1", 1) 
-	// foods = []Food{food}
+	_, err := dbMap.Select(&foods, "SELECT * FROM foods ORDER BY votes DESC")
 
 	if err != nil {
 		glog.Warningf("Can't get foods by meal: %v", err)
@@ -119,7 +116,7 @@ func GetDbMap() *gorp.DbMap {
 
 	// add a table, setting the table name to 'Foods' and
 	// specifying that the FoodId property is an auto incrementing PK
-	t := dbMap.AddTableWithName(Food{}, "foods").SetKeys(true, "FoodId")
+	t := dbMap.AddTableWithName(Food{}, "foods").SetKeys(true, "Id")
 	t.ColMap("Name").SetMaxSize(30)
 	// t.ColMap("foodname").SetMaxSize(20)
 	t.ColMap("Meal").SetMaxSize(1)
@@ -129,7 +126,7 @@ func GetDbMap() *gorp.DbMap {
 	err = dbMap.CreateTablesIfNotExists()
 	checkErr(err, "Create tables failed")
 
-	// food := Food {Name: "Waffle Fries", Hall: "roma", Votes: 48, Date: "today", Meal: "d" }
+	// food := Food {Name: "Chicken Tenders", Hall: "Wu/Wilcox", Votes: 32, Date: "today", Filters: "Victorfood", Meal: "d" }
 	// err = dbMap.Insert(&food)
 
 	// var foods []Food
