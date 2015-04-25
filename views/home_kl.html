@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SnikSnak</title>
+    
+    <!-- Latest compiled and minified CSS
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
+
+    <!--custom css-->
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="skeleton.css">
+
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body>
+    <table id="container">
+      <tr>
+        <td>
+          <div class="twelve columns"><p class="name">SNIKSNAK</p></div>
+        </td>
+        <td>
+          <div class="row">
+            <div class="two columns">MEAL</div>
+            <div class="two columns">Breakfast</div>
+            <div class="two columns">Lunch</div>
+            <div class="two columns">Dinner</div>
+          </div>
+          <div class="row">
+            <div class="two columns">HALL</div>
+            <div class="two columns">Rocky/Mathey</div>
+            <div class="two columns">Forbes</div>
+            <div class="two columns">Whitman</div>
+            <div class="two columns">Wilson/Butler</div>
+          </div>
+          <div class="row">
+            <div class="two columns">DIET</div>
+            <div class="two columns">Vegan</div>
+            <div class="two columns">Vegetarian</div>
+            <div class="two columns">Pork-free</div>
+          </div>
+        </td>
+      </tr>
+      <tr><div class="dividor">hello</div></tr>
+    </table>
+
+
+  </body>
+  <script type="text/javascript">
+    $(document).ready(function() {
+     $('.upvote').click(function() {
+      var id = $(this).data('food-id')
+      var vote = $(this).closest("tr").find('.votes')
+      vote.html(parseInt(vote.text())+1);
+      $.post( "/api/inc/" + id);
+     });
+     $('.downvote').click(function() {
+      var id = $(this).data('food-id')
+      var vote = $(this).closest("tr").find('.votes')
+      vote.html(parseInt(vote.text())-1);
+      $.post("/api/dec/" + id);
+     });
+    });
+   </script>
+</html>
