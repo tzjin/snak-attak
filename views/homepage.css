@@ -1,0 +1,27 @@
+html {
+    background: url(bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#header {
+    width: 80%;
+    min-width: 1000px;
+    horizontal-align: center;
+    background: #77BBB3;
+    margin: 0 auto;
+}
+
+#name {
+	margin: 0 auto;
+	width: 100%;
+    background-color: #77BBB3;
+}
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
