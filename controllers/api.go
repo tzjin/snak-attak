@@ -33,6 +33,9 @@ func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *htt
 	}
 	
 	msg := models.GetMealData(dbMap, meal)
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
 	
 	fmt.Fprintf(w, "%s\n", msg)
 }

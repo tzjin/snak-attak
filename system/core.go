@@ -14,7 +14,7 @@ import (
 	"github.com/go-gorp/gorp"
 	"github.com/golang/glog"
 	"github.com/gorilla/sessions"
-	"github.com/pelletier/go-toml"
+	// "github.com/pelletier/go-toml"
 	"github.com/zenazn/goji/web"
 	"sniksnak/models"
 )
@@ -27,38 +27,38 @@ type CsrfProtection struct {
 }
 
 type Application struct {
-	Config         *toml.TomlTree
+	// Config         *toml.TomlTree
 	Template       *template.Template
 	Store          *sessions.CookieStore
 	DbMap          *gorp.DbMap
 	CsrfProtection *CsrfProtection
 }
 
-func (application *Application) Init(filename *string) {
+func (application *Application) Init() {
 
-	config, err := toml.LoadFile(*filename)
-	if err != nil {
-		glog.Fatalf("TOML load failed: %s\n", err)
-	}
+	// config, err := toml.LoadFile(*filename)
+	// if err != nil {
+	// 	glog.Fatalf("TOML load failed: %s\n", err)
+	// }
 
 	hash := sha256.New()
-	io.WriteString(hash, config.Get("cookie.mac_secret").(string))
+	io.WriteString(hash, "blankityblank")
 	application.Store = sessions.NewCookieStore(hash.Sum(nil))
 	application.Store.Options = &sessions.Options{
 		HttpOnly: true,
-		Secure:   config.Get("cookie.secure").(bool),
+		Secure:   false,
 	}
-	// dbConfig := config.Get("database").(*toml.TomlTree)
+
 	application.DbMap = models.GetDbMap()
 
 	application.CsrfProtection = &CsrfProtection{
-		Key:    config.Get("csrf.key").(string),
-		Cookie: config.Get("csrf.cookie").(string),
-		Header: config.Get("csrf.header").(string),
-		Secure: config.Get("cookie.secure").(bool),
+		Key:    "blank",
+		Cookie: "blank",
+		Header: "blank",
+		Secure: false,
 	}
 
-	application.Config = config
+	// application.Config = config
 }
 
 func (application *Application) LoadTemplates() error {
@@ -71,7 +71,7 @@ func (application *Application) LoadTemplates() error {
 		return nil
 	}
 
-	err := filepath.Walk(application.Config.Get("general.template_path").(string), fn)
+	err := filepath.Walk("views", fn)
 
 	if err != nil {
 		return err

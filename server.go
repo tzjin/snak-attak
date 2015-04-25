@@ -1,7 +1,7 @@
 package main
 
 import (
-	"flag"
+	// "flag"
 	"net/http"
 
 	"github.com/golang/glog"
@@ -16,19 +16,17 @@ import (
 )
 
 func main() {
-	filename := flag.String("config", "config.toml.example", "Path to configuration file")
 
-	flag.Parse()
 	defer glog.Flush()
 
 	var application = &system.Application{}
 
-	application.Init(filename)
+	application.Init()
 	application.LoadTemplates()
 
 	// Setup static files
 	static := web.New()
-	publicPath := application.Config.Get("general.public_path").(string)
+	publicPath := "public"
 	static.Get("/assets/*", http.StripPrefix("/assets/", http.FileServer(http.Dir(publicPath))))
 
 	http.Handle("/assets/", static)
