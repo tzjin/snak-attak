@@ -35,7 +35,7 @@
             </div>
             <div class="row">
               <div class="two columns">HALL</div>
-              <div class="two columns">Rocky/Mathey</div>
+              <div class="two columns"><div id="circle">R/M</div>Rocky/Mathey</div>
               <div class="two columns">Forbes</div>
               <div class="two columns">Whitman</div>
               <div class="two columns">Wilson/Butler</div>
@@ -49,25 +49,51 @@
           </td>
         </tr>
       </table>
-      <div class="divider"></div>
+      <div id="food-table">
+        <table class="u-full-width">
+          <thead>
+             <tr>
+                <th> </th>
+                <th>Item</th>
+                <th>Dining Hall</th>
+                <th>Dietary Options</th>
+                <th>Votes</th>
+                <th>    </th>
+                <th>    </th>
+             </tr>
+          </thead>
+          <tbody>
+             {{range $element := .Foods}}
+             <tr id='{{$element.Id}}' >
+                <td> </td>
+                <td>{{$element.Name}}</td>
+                <td>{{$element.Hall}}</td>
+                <td>{{$element.Filters}}</td>
+                <td class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</td>
+                <td class='upvote' data-food-id='{{$element.Id}}'>Yum</td>
+                <td class='downvote' data-food-id='{{$element.Id}}'>Ick</td>
+             </tr>
+             {{end}}
+          </tbody>
+        </table>
+      </div>
     </div>
 
-
+    <script type="text/javascript">
+      $(document).ready(function() {
+       $('.upvote').click(function() {
+        var id = $(this).data('food-id')
+        var vote = $(this).closest("tr").find('.votes')
+        vote.html(parseInt(vote.text())+1);
+        $.post( "/api/inc/" + id);
+       });
+       $('.downvote').click(function() {
+        var id = $(this).data('food-id')
+        var vote = $(this).closest("tr").find('.votes')
+        vote.html(parseInt(vote.text())-1);
+        $.post("/api/dec/" + id);
+       });
+      });
+    </script>
   </body>
-  <script type="text/javascript">
-    $(document).ready(function() {
-     $('.upvote').click(function() {
-      var id = $(this).data('food-id')
-      var vote = $(this).closest("tr").find('.votes')
-      vote.html(parseInt(vote.text())+1);
-      $.post( "/api/inc/" + id);
-     });
-     $('.downvote').click(function() {
-      var id = $(this).data('food-id')
-      var vote = $(this).closest("tr").find('.votes')
-      vote.html(parseInt(vote.text())-1);
-      $.post("/api/dec/" + id);
-     });
-    });
-   </script>
 </html>
