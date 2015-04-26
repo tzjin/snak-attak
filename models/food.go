@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
-	"time"
+	// "time"
+	"fmt"
 
 	"database/sql"
 	"os"
@@ -15,14 +16,14 @@ import (
 )
 
 type Food struct {
-	Id   		int    //`db:"foodid"`
+	Id       int    //`db:"foodid"`
 	Name     string //`db:"fname"`
 	Hall     string //`db:"hall`
 	Votes    int    //`db:"votes`
 	Date     string //`db:"date`
 	Meal     string //`db:"meal`
 	Filters  string //'db:"filters
-	Comments string  //`comments`
+	Comments string //`comments`
 	// Filters?
 }
 
@@ -60,15 +61,16 @@ func GetMealData(dbMap *gorp.DbMap, meal string) string {
 	return msg.String()
 }
 
-func VoteByName(dbMap *gorp.DbMap, foodname string, up bool) (food *Food) {
+func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 	// Today's date
-	t := time.Now().Local()
-	date := t.Format("2006-01-02")
+	// t := time.Now().Local()
+	// date := t.Format("2006-01-02")
 
 	// Get foods that match name + today's date
-	fuds, err := dbMap.Select(Food{}, "SELECT * FROM Foods where fname = $1 and date = $2 ", foodname, date)
+	// fuds, err := dbMap.Select(Food{}, "SELECT * FROM Foods where fname = $1 and date = $2 ", foodid, date)
+	obj, err := dbMap.Get(Food{}, foodid)
 
-	food, ok := fuds[0].(*Food)
+	food, ok := obj.(*Food)
 	if !ok {
 		// cannot convert interface
 	}
@@ -78,7 +80,10 @@ func VoteByName(dbMap *gorp.DbMap, foodname string, up bool) (food *Food) {
 	} else {
 		food.Votes--
 	}
-	count, err := dbMap.Update(&food)
+
+	fmt.Printf("%d\n", food.Votes)
+
+	count, err := dbMap.Update(food)
 
 	if err != nil {
 		glog.Warningf("Update votes by ID failed: %v", err)

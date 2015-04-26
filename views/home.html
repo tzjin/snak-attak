@@ -44,7 +44,7 @@
           </thead>
           <tbody>
              {{range $element := .Foods}}
-             <tr id='{{$element.Id}}' data-meal='{{$element.Meal}}' data-hall='{{$element.Hall}}' data-filt='{{$element.Filters}}' >
+             <tr id='{{$element.Id}}' data-meal='{{$element.Meal}}' data-hall='{{$element.Hall}}' data-filters='{{$element.Filters}}' >
                 <td> </td>
                 <td>{{$element.Name}}</td>
                 <td>{{$element.Hall}}</td>
@@ -65,7 +65,7 @@
         var id = $(this).data('food-id')
         var vote = $(this).closest("tr").find('.votes')
         vote.html(parseInt(vote.text())+1);
-        $.post( "/api/inc/" + id);
+        $.get( "/api/inc/" + id);
        });
        $('.downvote').click(function() {
         var id = $(this).data('food-id')
