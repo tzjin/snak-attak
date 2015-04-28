@@ -44,9 +44,7 @@ func (controller *ApiController) GET_data(c web.C, w http.ResponseWriter, r *htt
 func (controller *ApiController) INC_counter(c web.C, w http.ResponseWriter, r *http.Request) {
 	// access database and incr
 	dbMap := controller.GetDbMap(c)
-
 	val := c.URLParams["id"]
-	fmt.Println(val)
 	id, err := strconv.ParseInt(val, 10, 32)
 
 	if err != nil {
