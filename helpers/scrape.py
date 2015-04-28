@@ -78,11 +78,11 @@ def scrapeall():
    foods = {}
    halls = ['roma', 'wucox', 'whitman', 'forbes', 'grad', 'cjl']
    for hall in halls:
-      foods[hall] = menus.scrape(hall)
+      foods[hall] = scrape(hall)
    print foods
 
 if __name__ == "__main__":
-   scrapeall()
+   scrape('cjl')
 
 
 
