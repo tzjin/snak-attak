@@ -83,7 +83,7 @@ func isValidToken(a, b string) bool {
 	return subtle.ConstantTimeCompare(x, y) == 1
 }
 
-var csrfProtectionMethodForNoXhr = []string{"POST", "PUT", "DELETE"}
+var csrfProtectionMethodForNoXhr = []string{ /*"POST", */ "PUT", "DELETE"}
 
 func isCsrfProtectionMethodForNoXhr(method string) bool {
 	return uslice.StrHas(csrfProtectionMethodForNoXhr, strings.ToUpper(method))

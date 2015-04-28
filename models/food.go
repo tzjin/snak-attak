@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"log"
 	// "time"
-	"fmt"
 
 	"database/sql"
 	"os"
@@ -80,8 +79,6 @@ func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 	} else {
 		food.Votes--
 	}
-
-	fmt.Printf("%d\n", food.Votes)
 
 	count, err := dbMap.Update(food)
 
