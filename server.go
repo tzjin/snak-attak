@@ -37,7 +37,7 @@ func main() {
 	goji.Use(application.ApplyDbMap)
 	goji.Use(application.ApplyAuth)
 	goji.Use(application.ApplyIsXhr)
-	goji.Use(application.ApplyCsrfProtection)
+	// goji.Use(application.ApplyCsrfProtection)
 	goji.Use(context.ClearHandler)
 
 	controller := &controllers.MainController{}
