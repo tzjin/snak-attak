@@ -1,9 +1,17 @@
 body {
-    background: url(/img/bg.jpg) no-repeat center center fixed;
+    background: url(bg.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+    margin: 0;
 }
 
 .name {
@@ -12,17 +20,39 @@ body {
     color: white;
     font-family: 'Oswald', sans-serif;
     font-size: 100px;
+    text-shadow: 5px 5px 20px black;
 }
 
 .filters {
     background-color: #EDA455;
 }
 
-.circle {
+#circle {
+    text-align: center;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     border-radius: 50%;
-    width:200px;
-    height:200px;
-    border:white;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: rgba(255,255,255,0.3);
+}
+
+#filter_name {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#filter_label {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 30px;
+}
+
+#filter_section {
+    padding: 5%;
 }
 
 table {
@@ -33,8 +63,18 @@ table {
 }
 
 #container {
-    margin:10%;
-    width:80%;
+    margin-top: 0;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+#scrolling_back {
+    min-height: 100%;
+    width: 84%;
+    margin-left: 8%;
+    margin-right: 8%;
+    background:rgba(0,0,0,0.6);
 }
 
 .divider {
@@ -43,6 +83,6 @@ table {
 }   
 
 #food-table {
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0, 0.4);
     width: 100%;
 }
