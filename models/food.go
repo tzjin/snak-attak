@@ -15,14 +15,14 @@ import (
 )
 
 type Food struct {
-	Id       int      //`db:"foodid"`
-	Name     string   //`db:"fname"`
-	Hall     string   //`db:"hall`
-	Votes    int      //`db:"votes`
-	Date     string   //`db:"date`
-	Meal     string   //`db:"meal`
-	Filters  []string //'db:"filters
-	Comments string   //`comments`
+	Id       int    //`db:"foodid"`
+	Name     string //`db:"fname"`
+	Hall     string //`db:"hall`
+	Votes    int    //`db:"votes`
+	Date     string //`db:"date`
+	Meal     string //`db:"meal`
+	Filters  string //'db:"filters
+	Comments string //`comments`
 	// Filters?
 }
 
@@ -119,7 +119,7 @@ func GetDbMap() *gorp.DbMap {
 	// add a table, setting the table name to 'Foods' and
 	// specifying that the FoodId property is an auto incrementing PK
 	t := dbMap.AddTableWithName(Food{}, "foods").SetKeys(true, "Id")
-	t.ColMap("Name").SetMaxSize(30)
+	t.ColMap("Name").SetMaxSize(100)
 	// t.ColMap("foodname").SetMaxSize(20)
 	t.ColMap("Meal").SetMaxSize(1)
 
@@ -127,9 +127,6 @@ func GetDbMap() *gorp.DbMap {
 	// use a migration tool, or create the tables via scripts
 	err = dbMap.CreateTablesIfNotExists()
 	checkErr(err, "Create tables failed")
-
-	// food := Food {Name: "Chicken Tenders", Hall: "Wu/Wilcox", Votes: 32, Date: "today", Filters: "Victorfood", Meal: "d" }
-	// err = dbMap.Insert(&food)
 
 	// var foods []Food
 	// _, err = dbMap.Select(&foods, "SELECT * FROM foods")

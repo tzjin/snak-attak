@@ -32,82 +32,208 @@ func toFood(h Halls) []Food {
 	f := []Food{}
 	// Roma
 	for _, a := range h.Roma.Breakfast {
-		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: a.Filt, Meal: "b"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Roma.Lunch {
-		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: a.Filt, Meal: "l"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Roma.Dinner {
-		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: a.Filt, Meal: "d"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 
 	// Wucox
 	for _, a := range h.Wucox.Breakfast {
-		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: a.Filt, Meal: "b"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Wucox.Lunch {
-		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: a.Filt, Meal: "l"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Wucox.Dinner {
-		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: a.Filt, Meal: "d"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 
 	// Whitman
 	for _, a := range h.Whitman.Breakfast {
-		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: a.Filt, Meal: "b"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Whitman.Lunch {
-		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: a.Filt, Meal: "l"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Whitman.Dinner {
-		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: a.Filt, Meal: "d"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	// Forbes
 	for _, a := range h.Forbes.Breakfast {
-		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: a.Filt, Meal: "b"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Forbes.Lunch {
-		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: a.Filt, Meal: "l"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Forbes.Dinner {
-		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: a.Filt, Meal: "d"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	// Grad
 	for _, a := range h.Grad.Breakfast {
-		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: a.Filt, Meal: "b"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Grad.Lunch {
-		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: a.Filt, Meal: "l"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Grad.Dinner {
-		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: a.Filt, Meal: "d"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	// CJL
 	for _, a := range h.CJL.Breakfast {
-		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: a.Filt, Meal: "b"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.CJL.Lunch {
-		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: a.Filt, Meal: "l"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.CJL.Dinner {
-		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: a.Filt, Meal: "d"}
+		filter := ""
+		for i, fil := range a.Filt {
+			if i > 0 {
+				filter += ", "
+			}
+			filter += fil
+		}
+		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	return f

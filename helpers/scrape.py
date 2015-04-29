@@ -25,7 +25,7 @@ def scrape(college,):
              'salad': "locationNum=40&locationName=Salad+Selections&naFlag=1"}
 
    ''' Filters '''
-   filt = {'vgn': '#0000FF', 'vgt': '#00FF00', 'pork': '#8000FF'}
+   filt = {'Vegan': '#0000FF', 'Vegetarian': '#00FF00', 'Pork': '#8000FF'}
 
    '''Get menu'''
    f = urllib.urlopen(base % dhall[college])
@@ -45,7 +45,7 @@ def scrape(college,):
 
          # check for nuts
          if foodname.text[-1] == 'M':
-            filts.append('nuts')
+            filts.append('Nuts')
             food['name'] = foodname.text[:-2]
          else:
             food['name'] = foodname.text
