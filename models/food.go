@@ -15,14 +15,14 @@ import (
 )
 
 type Food struct {
-	Id       int    //`db:"foodid"`
-	Name     string //`db:"fname"`
-	Hall     string //`db:"hall`
-	Votes    int    //`db:"votes`
-	Date     string //`db:"date`
-	Meal     string //`db:"meal`
-	Filters  string //'db:"filters
-	Comments string //`comments`
+	Id       int      //`db:"foodid"`
+	Name     string   //`db:"fname"`
+	Hall     string   //`db:"hall`
+	Votes    int      //`db:"votes`
+	Date     string   //`db:"date`
+	Meal     string   //`db:"meal`
+	Filters  []string //'db:"filters
+	Comments string   //`comments`
 	// Filters?
 }
 
