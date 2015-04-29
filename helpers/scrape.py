@@ -1,4 +1,4 @@
-def scrape(college):
+def scrape(college,):
    import urllib
    import string
    import re
@@ -79,10 +79,11 @@ def scrapeall():
    halls = ['roma', 'wucox', 'whitman', 'forbes', 'grad', 'cjl']
    for hall in halls:
       foods[hall] = scrape(hall)
-   print foods
+   return foods
 
 if __name__ == "__main__":
-   scrape('cjl')
+  import json
+  print json.dumps(scrapeall())
 
 
 
