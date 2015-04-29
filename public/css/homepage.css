@@ -27,6 +27,16 @@ html {
     background-color: #EDA455;
 }
 
+.hidden {
+    visibility: collapse;
+}
+
+.highlight {
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}
+
 .circle {
     text-align: center;
     margin: auto;
@@ -45,11 +55,11 @@ html {
     margin-right: auto;
 }
 
-#filter_label {
+/*.filter_label {
     margin-top: auto;
     margin-bottom: auto;
     font-size: 30px;
-}
+}*/
 
 #filter_section {
     padding: 5%;
