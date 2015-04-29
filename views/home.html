@@ -1,79 +1,80 @@
 {{define "home"}}
 <div id="scrolling_back">
-    <div id="container">
-      <table>
-        <tr>
-          <td>
-            <div class="twelve columns"><p class="name">SNIKSNAK</p></div>
-          </td>
-         <td><div id="filter_section">
-            <div class="row">
-              <div class="two columns"><div class="filter_label">MEAL</div></div>
-                <div class="two columns"><div id="circle">B</div><div id ="filter_name">Breakfast</div></div>
-              <div class="two columns"><div id="circle">L</div><div id ="filter_name">Lunch</div></div>
-              <div class="two columns"><div id="circle">D</div><div id ="filter_name">Dinner</div></div>
-            </div>
-            <div class="row">
-              <div class="two columns"><div class="filter_label">HALL</div></div>
-              <div class="two columns"><div id="circle">R/M</div><div id ="filter_name">Rocky Mathey</div></div>
-              <div class="two columns"><div id="circle">F</div><div id ="filter_name">Forbes</div></div>
-              <div class="two columns"><div id="circle">W</div><div id ="filter_name">Whitman</div></div>
-              <div class="two columns"><div id="circle">W/W</div><div id ="filter_name">Wilson Butler</div></div>
-            </div>
-            <div class="row">
-              <div class="two columns"><div class="filter_label">DIET</div></div>
-              <div class="two columns"><div id="circle">V</div><div id ="filter_name">Vegan</div></div>
-              <div class="two columns"><div id="circle">Ve</div><div id ="filter_name">Vegetarian</div></div>
-              <div class="two columns"><div id="circle">P-F</div><div id ="filter_name">Pork-Free</div></div>
-            </div>
-             </div></td>
-        </tr>
-      </table>
-      <div id="food-table">
-        <table class="u-full-width">
-          <thead>
-             <tr>
-                <th> </th>
-                <th>Item</th>
-                <th>Dining Hall</th>
-                <th>Dietary Options</th>
-                <th>Votes</th>
-                <th>    </th>
-                <th>    </th>
-             </tr>
-          </thead>
-          <tbody>
-             {{range $element := .Foods}}
-             <tr id='{{$element.Id}}' >
-                <td> </td>
-                <td>{{$element.Name}}</td>
-                <td>{{$element.Hall}}</td>
-                <td>{{$element.Filters}}</td>
-                <td class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</td>
-                <td class='upvote' data-food-id='{{$element.Id}}'>Yum</td>
-                <td class='downvote' data-food-id='{{$element.Id}}'>Ick</td>
-             </tr>
-             {{end}}
-          </tbody>
-        </table>
+  <div id="container">
+    <div class="row">
+      <div class="six columns"><p class="name">SNIKSNAK</p></div>
+      <div id="filter_section" class="six columns">
+        <div class="row">
+          <div class="two columns"><div class="filter_label">MEAL</div></div>
+          <div class="two columns"><div class="circle meal">B</div><div class ="filter_name">Breakfast</div></div>
+          <div class="two columns"><div class="circle meal">L</div><div class ="filter_name">Lunch</div></div>
+          <div class="two columns"><div class="circle meal">D</div><div class ="filter_name">Dinner</div></div>
+        </div>
+        <div class="row">
+          <div class="two columns"><div class="filter_label">HALL</div></div>
+          <div class="two columns"><div class="circle hall">R/M</div><div class ="filter_name">Rocky Mathey</div></div>
+          <div class="two columns"><div class="circle hall">F</div><div class ="filter_name">Forbes</div></div>
+          <div class="two columns"><div class="circle hall">W</div><div class ="filter_name">Whitman</div></div>
+          <div class="two columns"><div class="circle hall">W/W</div><div class ="filter_name">Wilson Butler</div></div>
+        </div>
+        <div class="row">
+          <div class="two columns"><div class="filter_label">DIET</div></div>
+          <div class="two columns"><div class="circle filter">V</div><div class ="filter_name">Vegan</div></div>
+          <div class="two columns"><div class="circle filter">Ve</div><div class ="filter_name">Vegetarian</div></div>
+          <div class="two columns"><div class="circle filter">P-F</div><div class ="filter_name">Pork</div></div>
+        </div>
       </div>
     </div>
-    </div>
+    <hr>
+    <div id="food-table">
+      <table class="u-full-width">
+        <thead>
+         <tr>
+          <th> </th>
+          <th>Item</th>
+          <th>Dining Hall</th>
+          <th>Dietary Options</th>
+          <th>Votes</th>
+          <th>    </th>
+          <th>    </th>
+        </tr>
+      </thead>
+      <tbody>
+       {{range $element := .Foods}}
+       <tr id='{{$element.Id}}' data-meal='{{$element.Meal}}' data-hall='{{$element.Hall}}' data-filters='{{$element.Filters}}'>
+        <td> </td>
+        <td>{{$element.Name}}</td>
+        <td>{{$element.Hall}}</td>
+        <td>{{$element.Filters}}</td>
+        <td class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</td>
+        <td class='upvote' data-food-id='{{$element.Id}}'>Yum</td>
+        <td class='downvote' data-food-id='{{$element.Id}}'>Ick</td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
 
-    <script type="text/javascript">
-      $(document).ready(function() {
-       $('.upvote').click(function() {
-        var id = $(this).data('food-id')
-        var vote = $(this).closest("tr").find('.votes')
-        vote.html(parseInt(vote.text())+1);
-        $.post( "/api/inc/" + id);
-       });
-       $('.downvote').click(function() {
-        var id = $(this).data('food-id')
-        var vote = $(this).closest("tr").find('.votes')
-        vote.html(parseInt(vote.text())-1);
-        $.post("/api/dec/" + id);
-       });
-      });
-  </script>
+<script type="text/javascript">
+  $(document).ready(function() {
+   $('.upvote').click(function() {
+    var id = $(this).data('food-id')
+    var vote = $(this).closest("tr").find('.votes')
+    vote.html(parseInt(vote.text())+1);
+    $.post( "/api/inc/" + id);
+  });
+   $('.downvote').click(function() {
+    var id = $(this).data('food-id')
+    var vote = $(this).closest("tr").find('.votes')
+    vote.html(parseInt(vote.text())-1);
+    $.post("/api/dec/" + id);
+  });
+ });
+  $('.circle').click(function() {
+    var type = $(this).attr('class').replace('circle ', '');
+    var value = $(this).next('.filter_name').text();
+  });
+</script>
 {{end}}

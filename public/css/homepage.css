@@ -27,7 +27,7 @@ html {
     background-color: #EDA455;
 }
 
-#circle {
+.circle {
     text-align: center;
     margin: auto;
     width: 30px;
@@ -39,7 +39,7 @@ html {
     background-color: rgba(255,255,255,0.3);
 }
 
-#filter_name {
+.filter_name {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -53,13 +53,19 @@ html {
 
 #filter_section {
     padding: 5%;
+    color:white;
+    font-family: 'Oswald', sans-serif;
 }
 
-table {
+table{
     width:100%;
     color:white;
     font-family: 'Oswald', sans-serif;
     border-color: #EDA455;
+}
+
+hr {
+    margin-top: 0;
 }
 
 #container {
