@@ -43,9 +43,9 @@
 			"Rev": "e51fec16be7847e24d0270a5ce1f95cf2482b5e9"
 		},
 		{
-			"ImportPath": "github.com/pelletier/go-toml",
-			"Comment": "v0.2.1-16-g42e7853",
-			"Rev": "42e7853ef6ea4cfebab291821ec0a8ce37be7340"
+			"ImportPath": "github.com/robfig/cron",
+			"Comment": "v1-2-g67823cd",
+			"Rev": "67823cd24dece1b04cced3a0a0b3ca2bc84d875e"
 		},
 		{
 			"ImportPath": "github.com/zenazn/goji",
