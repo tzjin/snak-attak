@@ -1,31 +1,32 @@
 {{define "home"}}
-<div id="container">
+<div id="scrolling_back">
+    <div id="container">
       <table>
         <tr>
           <td>
-            <div class="eight columns"><p class="name">SNIKSNAK</p></div>
+            <div class="twelve columns"><p class="name">SNIKSNAK</p></div>
           </td>
-          <td>
+         <td><div id="filter_section">
             <div class="row">
-              <div class="two columns">MEAL</div>
-              <div class="two columns" id="breakfast">Breakfast</div>
-              <div class="two columns" id="lunch">Lunch</div>
-              <div class="two columns" id="dinner">Dinner</div>
+              <div class="two columns"><div class="filter_label">MEAL</div></div>
+                <div class="two columns"><div id="circle">B</div><div id ="filter_name">Breakfast</div></div>
+              <div class="two columns"><div id="circle">L</div><div id ="filter_name">Lunch</div></div>
+              <div class="two columns"><div id="circle">D</div><div id ="filter_name">Dinner</div></div>
             </div>
             <div class="row">
-              <div class="two columns">HALL</div>
-              <div class="two columns" id="roma"><!-- <div id="circle">R/M</div> -->Rocky/Mathey</div>
-              <div class="two columns" id="forbes">Forbes</div>
-              <div class="two columns" id="whitman">Whitman</div>
-              <div class="two columns" id="wucox">Wilson/Butler</div>
+              <div class="two columns"><div class="filter_label">HALL</div></div>
+              <div class="two columns"><div id="circle">R/M</div><div id ="filter_name">Rocky Mathey</div></div>
+              <div class="two columns"><div id="circle">F</div><div id ="filter_name">Forbes</div></div>
+              <div class="two columns"><div id="circle">W</div><div id ="filter_name">Whitman</div></div>
+              <div class="two columns"><div id="circle">W/W</div><div id ="filter_name">Wilson Butler</div></div>
             </div>
             <div class="row">
-              <div class="two columns">DIET</div>
-              <div class="two columns" id="vgn">Vegan</div>
-              <div class="two columns" id="vgt">Vegetarian</div>
-              <div class="two columns" id="pork">Pork-free</div>
+              <div class="two columns"><div class="filter_label">DIET</div></div>
+              <div class="two columns"><div id="circle">V</div><div id ="filter_name">Vegan</div></div>
+              <div class="two columns"><div id="circle">Ve</div><div id ="filter_name">Vegetarian</div></div>
+              <div class="two columns"><div id="circle">P-F</div><div id ="filter_name">Pork-Free</div></div>
             </div>
-          </td>
+             </div></td>
         </tr>
       </table>
       <div id="food-table">
@@ -43,7 +44,7 @@
           </thead>
           <tbody>
              {{range $element := .Foods}}
-             <tr id='{{$element.Id}}' data-meal='{{$element.Meal}}' data-hall='{{$element.Hall}}' data-filters='{{$element.Filters}}' >
+             <tr id='{{$element.Id}}' >
                 <td> </td>
                 <td>{{$element.Name}}</td>
                 <td>{{$element.Hall}}</td>
@@ -56,6 +57,7 @@
           </tbody>
         </table>
       </div>
+    </div>
     </div>
 
     <script type="text/javascript">
@@ -73,5 +75,5 @@
         $.post("/api/dec/" + id);
        });
       });
-    </script>
+  </script>
 {{end}}
