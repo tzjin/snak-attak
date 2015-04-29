@@ -28,7 +28,7 @@ html {
 }
 
 .hidden {
-    visibility: collapse;
+    display: none;
 }
 
 .highlight {
