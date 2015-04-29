@@ -15,6 +15,7 @@ import (
 	"github.com/golang/glog"
 	"github.com/gorilla/sessions"
 	// "github.com/pelletier/go-toml"
+	"github.com/robfig/cron"
 	"github.com/zenazn/goji/web"
 	"sniksnak/models"
 )
@@ -57,6 +58,11 @@ func (application *Application) Init() {
 		Header: "blank",
 		Secure: false,
 	}
+
+	// Setup scheduler + scraper
+	c := cron.New()
+	c.AddFunc("@midnight", func() { models.StoreDailyData(application.DbMap) })
+	c.Start()
 
 	// application.Config = config
 }
