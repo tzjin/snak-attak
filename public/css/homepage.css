@@ -149,13 +149,22 @@ hr {
 
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (min-width: 400px) {
+    #name {
+        font-size: 80px;
+    }
+
+}
 
 /* Larger than phablet */
 @media (min-width: 550px) {}
 
 /* Larger than tablet */
-@media (min-width: 750px) {}
+@media (min-width: 750px) {
+    #name {
+        font-size: 100px;
+    }
+}
 
 /* Larger than desktop */
 @media (min-width: 1000px) {}
