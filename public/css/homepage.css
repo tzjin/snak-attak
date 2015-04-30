@@ -1,5 +1,5 @@
 body {
-    background: url(bg.jpg) no-repeat center center fixed;
+    background: url(smallspice.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -124,7 +124,7 @@ hr {
     height:10px;
 }  
 
-@media (max-width: 420px) {
+@media (max-width: 650px) {
     #name {
         text-align: center;
         font-size: 70px;
@@ -163,9 +163,6 @@ hr {
 
 }
 
-/* Larger than phablet */
-@media (min-width: 550px) {}
-
 /* Larger than tablet */
 @media (min-width: 750px) {
     #name {
@@ -173,15 +170,9 @@ hr {
     }
 }
 
-/* Larger than desktop */
-@media (min-width: 1000px) {}
-
-/* Larger than Desktop HD */
-@media (min-width: 1200px) {}
-
-@media all and (max-width:550px) {
-    #name, #filter_section {
-        float: none;
+@media all and (min-width:550px) {
+    body {
+        background: url(bg.jpg) no-repeat center center fixed;
     }
 }
 @media all and (min-width:970px) {
