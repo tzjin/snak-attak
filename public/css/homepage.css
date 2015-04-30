@@ -14,13 +14,14 @@ html {
     margin: 0;
 }
 
-.name {
-    margin: 10% 10% 10% 20%;
+#name {
+    margin-top: 10%;
 	width: 100%;
     color: white;
     font-family: 'Oswald', sans-serif;
     font-size: 100px;
     text-shadow: 5px 5px 20px black;
+    text-align: center;
 }
 
 .filters {
@@ -104,13 +105,21 @@ hr {
 
 #scrolling_back {
     min-height: 100%;
-    width: 84%;
-    margin-left: 8%;
-    margin-right: 8%;
+    width: 100%;
     background:rgba(0,0,0,0.6);
 }
 
 .divider {
     background-color:#EDA455;
     height:10px;
-}   
+}  
+
+@media all and (max-width:550px) {
+}
+@media all and (min-width:970px) {
+    #scrolling_back {
+        width: 84%;
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+} 
