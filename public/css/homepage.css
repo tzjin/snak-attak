@@ -16,12 +16,11 @@ html {
 
 #name {
     margin-top: 10%;
-	width: 100%;
+    width: 100%;
     color: white;
     font-family: 'Oswald', sans-serif;
     font-size: 100px;
     text-shadow: 5px 5px 20px black;
-    text-align: center;
 }
 
 .filters {
@@ -115,6 +114,9 @@ hr {
 }  
 
 @media all and (max-width:550px) {
+    #name, #filter_section {
+        float: none;
+    }
 }
 @media all and (min-width:970px) {
     #scrolling_back {
