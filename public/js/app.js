@@ -6,6 +6,7 @@ $(document).ready(function() {
   filters['hall'] = []
   filters['filter'] = []
 
+  // add or remove filter from list
   function toggleFilter(type, value) {
     console.log(type)
     console.log(filters[type])
@@ -16,65 +17,106 @@ $(document).ready(function() {
       filters[type].splice(index, 1);
   }
 
-  function hasValue(type, value) {
-    return filters[type].indexOf(value) != -1
+  // find current meal
+  function getCurrentMeal() {
+    var time = new Date();
+    var hour = time.getHours();
+    if (hour < 10 )
+      filters['meal'].push('b')
+    else if (hour < 14)
+      filters['meal'].push('l')
+    else // if (hour < 20)
+      filters['meal'].push('d')
+
+    highlightFilter(filters['meal'][0])
   }
 
-  function hasFilters() {
-    return (filters['meal'].length + filters['hall'].length + 
-      filters['filter'].length != 0)
-  }
-
- $('.upvote').click(function() {
-  var id = $(this).data('food-id')
-  var vote = $('#' + id).find('.votes')
-  vote.html(parseInt(vote.text())+1);
-  $.post( "/api/inc/" + id);
-});
- $('.downvote').click(function() {
-  var id = $(this).data('food-id')
-  var vote = $('#' + id).find('.votes')
-  vote.html(parseInt(vote.text())-1);
-  $.post("/api/dec/" + id);
-});
-
- $('.circle').click(function() {
-
-  var type = $(this).attr('class');
-  var value = $(this).next('.filter_name').text();
-
-  type = $.trim(type.replace('circle', '').replace('highlight', ''));
-
-  value = value.split(' ').join('/'); // replace spaces with slashes for dining halls
-  if (type == 'meal')
-    value = value[0].toLowerCase();
-
-  toggleFilter(type, value);
-  console.log(filters[type]);
-
-  // highlight border
-  if ($(this).hasClass('highlight'))
-    $(this).removeClass('highlight');
-  else
-    $(this).addClass('highlight');
-
-
-  // reveal foods
-  $('.food').each(function() {
-    var valid = true;
-    for (var ls in filters) {
-      var valid_filt = (filters[ls].length == 0);
-      for (var idx in filters[ls]) {
-        valid_filt |= $(this).hasClass(filters[ls][idx]);
-      }
-      valid &= valid_filt;
-    }
-
-    if (valid)
-      $(this).removeClass('hidden');
+  // highlight selected filter
+  function highlightFilter(value) {
+    var id = '#' + value
+    if ($(id).hasClass('highlight'))
+      $(id).removeClass('highlight');
     else
-      $(this).addClass('hidden');
+      $(id).addClass('highlight');
+  }
+
+  // hide or show each food item in list
+  function renderList() {
+    $('.food').each(function() {
+      var valid = true;
+      // check each type of filter
+      for (var ls in filters) {
+        
+        // iterate through each filter value
+        var valid_filt = (filters[ls].length == 0);
+        for (var idx in filters[ls]) {
+          
+          // custom logic for pork/nut-free
+          if (filters[ls][idx] == 'Pork' || filters[ls][idx] == 'Nuts')
+            valid_filt |= !$(this).hasClass(filters[ls][idx]);
+          
+          // else just check to see if contains filter
+          else {
+            valid_filt |= $(this).hasClass(filters[ls][idx]);
+            if (filters[ls][idx] == 'Vegetarian')
+              valid_filt |= $(this).hasClass('Vegan');
+          }
+        }
+
+        // and logic between filter types
+        valid &= valid_filt;
+      }
+
+      // hide or show
+      if (valid)
+        $(this).removeClass('hidden');
+      else
+        $(this).addClass('hidden');
+    });
+  }
+
+  // initial setup
+  getCurrentMeal();
+  renderList();
+
+  // upvote clicked
+  $('.upvote').click(function() {
+    var id = $(this).data('food-id')
+    var vote = $('#' + id).find('.votes')
+    vote.html(parseInt(vote.text())+1);
+    $.post( "/api/inc/" + id);
   });
-    
+
+  // downvote clicked
+  $('.downvote').click(function() {
+    var id = $(this).data('food-id')
+    var vote = $('#' + id).find('.votes')
+    vote.html(parseInt(vote.text())-1);
+    $.post("/api/dec/" + id);
+  });
+
+  // filter selected
+  $('.circle').click(function() {
+
+    var type = $(this).attr('class');
+    var value = $(this).attr('id')
+
+    type = $.trim(type.replace('circle', '').replace('highlight', ''));
+
+    highlightFilter(value)
+    toggleFilter(type, value);
+    console.log(filters[type]);
+
+    renderList();   
+  });
 });
-});
+
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62469249-1', 'auto');
+ga('send', 'pageview');
+
