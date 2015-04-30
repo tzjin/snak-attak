@@ -39,11 +39,6 @@ $(document).ready(function() {
 });
 
  $('.circle').click(function() {
-  
-  // if(!hasFilters())
-  //   $('.food').each(function() {
-  //     $(this).addClass('hidden');
-  //   });
 
   var type = $(this).attr('class');
   var value = $(this).next('.filter_name').text();
