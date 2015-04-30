@@ -28,34 +28,24 @@
       </div>
     </div>
     <hr>
-    <div id="food-table">
-      <table class="u-full-width">
-        <thead>
-         <tr>
-          <th> </th>
-          <th>Item</th>
-          <th>Dining Hall</th>
-          <th>Dietary Options</th>
-          <th>Votes</th>
-          <th>    </th>
-          <th>    </th>
-        </tr>
-      </thead>
-      <tbody>
+    <div id="food-table" class="u-full-width">
        {{range $element := .Foods}}
-       <tr id='{{$element.Id}}' class='food {{$element.Meal}} {{$element.Hall}} {{$element.Filters}}'>
-        <td> </td>
-        <td>{{$element.Name}}</td>
-        <td>{{$element.Hall}}</td>
-        <td>{{$element.Filters}}</td>
-        <td class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</td>
-        <td class='upvote' data-food-id='{{$element.Id}}'>Yum</td>
-        <td class='downvote' data-food-id='{{$element.Id}}'>Ick</td>
-      </tr>
+       <div class='row'>
+        <div class='info food {{$element.Meal}} {{$element.Hall}} {{$element.Filters}}'>
+          <div>{{$element.Name}}</div>
+          <div>
+            <div>{{$element.Hall}}</div>
+            <div>{{$element.Filters}}</div>
+          </div>
+        </div>
+        <div class="votes">
+          <div class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</div>
+          <div class='upvote' data-food-id='{{$element.Id}}'>Yum</div>
+          <div class='downvote' data-food-id='{{$element.Id}}'>Ick</div>
+        </div>
+       </div>
       {{end}}
-    </tbody>
-  </table>
-</div>
+    </div>
 </div>
 </div>
 {{end}}
