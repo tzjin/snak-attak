@@ -33,7 +33,7 @@ $(document).ready(function() {
 
   // highlight selected filter
   function highlightFilter(value) {
-    var id = '#' + value
+    var id = "div[id='" + value + "']"
     if ($(id).hasClass('highlight'))
       $(id).removeClass('highlight');
     else
@@ -103,9 +103,10 @@ $(document).ready(function() {
 
     type = $.trim(type.replace('circle', '').replace('highlight', ''));
 
+    console.log(filters[type]);
+
     highlightFilter(value)
     toggleFilter(type, value);
-    console.log(filters[type]);
 
     renderList();   
   });
