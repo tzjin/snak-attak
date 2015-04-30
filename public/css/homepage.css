@@ -71,6 +71,10 @@ hr {
     margin-top: 0;
 }
 
+.vote-column {
+    width:30%;
+}
+
 .row {
     width: 100%;
 
@@ -88,7 +92,7 @@ hr {
 
 .votes-column div, .food-info div {
     display: inline;
-    padding-right: 5px;
+    padding: 0 8px;
 }
 .votes {
     text-align: center;
@@ -112,6 +116,52 @@ hr {
     background-color:#EDA455;
     height:10px;
 }  
+
+@media (max-width: 420px) {
+    #name {
+        text-align: center;
+        font-size: 70px;
+    }
+
+    #filter_section {
+        width: 100%;
+    }
+
+    .circle {
+        float: left;
+    }
+
+    .food-name, .votes {
+        font-size: 1.2em;
+    }
+
+  /*  .downvote, .upvote {
+        float:right;
+    }*/
+    .food-text {
+        width: 50%;
+    }
+
+    .votes {
+        float: left;
+    }
+}
+
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
 
 @media all and (max-width:550px) {
     #name, #filter_section {
