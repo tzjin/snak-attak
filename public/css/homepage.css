@@ -31,16 +31,9 @@ html {
     display: none;
 }
 
-.highlight {
-    border-color: white;
-    border-width: 2px;
-    border-style: solid;
-    background-color: rgba(255,255,255,0.5);
-}
-
 .circle {
     text-align: center;
-    margin: auto;
+    margin: 2px auto;
     width: 30px;
     height: 30px;
     line-height: 30px;
@@ -50,17 +43,16 @@ html {
     background-color: rgba(255,255,255,0.3);
 }
 
+.highlight {
+    border: 2px white solid;
+    margin: 0px auto;
+}
+
 .filter_name {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
-
-/*.filter_label {
-    margin-top: auto;
-    margin-bottom: auto;
-    font-size: 30px;
-}*/
 
 #filter_section {
     padding: 5%;
