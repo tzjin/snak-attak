@@ -31,17 +31,17 @@
     <div id="food-table" class="u-full-width">
        {{range $element := .Foods}}
        <div class='row'>
-        <div class='info food {{$element.Meal}} {{$element.Hall}} {{$element.Filters}}'>
-          <div>{{$element.Name}}</div>
-          <div>
-            <div>{{$element.Hall}}</div>
+        <div class='nine columns info food {{$element.Meal}} {{$element.Hall}} {{$element.Filters}}'>
+          <div class="food-name">{{$element.Name}}</div>
+          <div class="food-info">
+            <div class="three columns">{{$element.Hall}}</div> 
             <div>{{$element.Filters}}</div>
           </div>
         </div>
-        <div class="votes">
-          <div class='votes' data-food-id='{{$element.Id}}'>{{$element.Votes}}</div>
-          <div class='upvote' data-food-id='{{$element.Id}}'>Yum</div>
-          <div class='downvote' data-food-id='{{$element.Id}}'>Ick</div>
+        <div class="three columns votes">
+          <div class='downvote four columns' data-food-id='{{$element.Id}}'><i class="fa fa-angle-down fa-2x"></i></div>
+          <div class='votes four columns' data-food-id='{{$element.Id}}'>{{$element.Votes}}</div>
+          <div class='upvote four columns' data-food-id='{{$element.Id}}'><i class="fa fa-angle-up fa-2x"></i></div>
         </div>
        </div>
       {{end}}

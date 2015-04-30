@@ -60,7 +60,7 @@ html {
     font-family: 'Oswald', sans-serif;
 }
 
-table{
+#food-table{
     width:100%;
     color:white;
     font-family: 'Oswald', sans-serif;
@@ -69,6 +69,30 @@ table{
 
 hr {
     margin-top: 0;
+}
+
+.row {
+    width: 100%;
+
+}
+
+.food-name {
+    font-size: 1.5em;
+}
+
+.food-info {
+    font-size: .75em;
+    color: rgba(255,255,255,0.7);
+    padding-bottom: 13px;
+}
+
+.votes div, .food-info div {
+    display: inline;
+    padding-right: 5px;
+}
+.votes {
+    text-align: center;
+    font-size: 1.5em;
 }
 
 #container {
@@ -90,7 +114,3 @@ hr {
     background-color:#EDA455;
     height:10px;
 }   
-
-#food-table {
-    width: 100%;
-}
