@@ -77,7 +77,10 @@ hr {
 
 .row {
     width: 100%;
+}
 
+.food-hall {
+    width: 75px;
 }
 
 .food-name {
@@ -90,7 +93,11 @@ hr {
     padding-bottom: 13px;
 }
 
-.votes-column div, .food-info div {
+.food-info div {
+    float: left;
+}
+
+.votes-column div {
     display: inline;
     padding: 0 8px;
 }
