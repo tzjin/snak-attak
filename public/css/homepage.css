@@ -86,7 +86,7 @@ hr {
     padding-bottom: 13px;
 }
 
-.votes div, .food-info div {
+.votes-column div, .food-info div {
     display: inline;
     padding-right: 5px;
 }

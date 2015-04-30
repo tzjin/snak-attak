@@ -37,6 +37,7 @@ $(document).ready(function() {
   vote.html(parseInt(vote.text())-1);
   $.post("/api/dec/" + id);
 });
+
  $('.circle').click(function() {
   
   // if(!hasFilters())
@@ -68,9 +69,9 @@ $(document).ready(function() {
     var valid = true;
     for (var ls in filters) {
       var valid_filt = (filters[ls].length == 0);
-      for (var idx in filters[ls]) 
+      for (var idx in filters[ls]) {
         valid_filt |= $(this).hasClass(filters[ls][idx]);
-    
+      }
       valid &= valid_filt;
     }
 

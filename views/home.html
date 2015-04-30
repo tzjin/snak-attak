@@ -22,23 +22,23 @@
           <div class="two columns"><div class="filter_label">DIET</div></div>
           <div class="two columns"><div class="circle filter">V</div><div class ="filter_name">Vegan</div></div>
           <div class="two columns"><div class="circle filter">Ve</div><div class ="filter_name">Vegetarian</div></div>
-          <div class="two columns"><div class="circle filter">P</div><div class ="filter_name">Pork free</div></div>
-          <div class="two columns"><div class="circle filter">N</div><div class ="filter_name">Nut free</div></div>
+          <div class="two columns"><div class="circle filter">P</div><div class ="filter_name">Pork</div></div>
+          <div class="two columns"><div class="circle filter">N</div><div class ="filter_name">Nuts</div></div>
         </div>
       </div>
     </div>
     <hr>
     <div id="food-table" class="u-full-width">
        {{range $element := .Foods}}
-       <div class='row'>
-        <div class='nine columns info food {{$element.Meal}} {{$element.Hall}} {{$element.Filters}}'>
+       <div id='{{$element.Id}}' class='row food {{$element.Meal}} {{$element.Hall}} {{$element.Filters}}'>
+        <div class='nine columns'>
           <div class="food-name">{{$element.Name}}</div>
           <div class="food-info">
             <div class="three columns">{{$element.Hall}}</div> 
             <div>{{$element.Filters}}</div>
           </div>
         </div>
-        <div class="three columns votes">
+        <div class="three columns votes-column">
           <div class='downvote four columns' data-food-id='{{$element.Id}}'><i class="fa fa-angle-down fa-2x"></i></div>
           <div class='votes four columns' data-food-id='{{$element.Id}}'>{{$element.Votes}}</div>
           <div class='upvote four columns' data-food-id='{{$element.Id}}'><i class="fa fa-angle-up fa-2x"></i></div>
