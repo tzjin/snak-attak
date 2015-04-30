@@ -44,15 +44,18 @@ def scrape(college,):
          filts = []
 
          # check for nuts
-         if foodname.text[-1] == 'M':
-            filts.append('Nuts')
-            food['name'] = foodname.text[:-2]
-         else:
+         if foodname.text[-1] != 'M':
+            filts.append('Nut free')
             food['name'] = foodname.text
+         else:
+            food['name'] = foodname.text[-2]
          
          # check for other dietary restrictions
          for key in filt:
-            if filt[key] in foodname.span['style']:
+            if key == 'Pork':
+              if filt[key] not in foodname.span['style']:
+                filts.append('Pork free')
+            elif filt[key] in foodname.span['style']:
                filts.append(key)
 
          # set things up
@@ -76,7 +79,7 @@ def scrape(college,):
 
 def scrapeall():
    foods = {}
-   halls = ['roma', 'wucox', 'whitman', 'forbes', 'grad', 'cjl']
+   halls = ['roma', 'wucox', 'whitman', 'forbes', 'cjl']
    for hall in halls:
       foods[hall] = scrape(hall)
    return foods

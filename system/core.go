@@ -63,7 +63,7 @@ func (application *Application) Init() {
 	c := cron.New()
 	c.AddFunc("@midnight", func() { models.StoreDailyData(application.DbMap) })
 	c.Start()
-
+	//models.StoreDailyData(application.DbMap)
 	// application.Config = config
 }
 
