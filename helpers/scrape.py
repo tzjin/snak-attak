@@ -60,15 +60,6 @@ def scrape(college,):
          foods.append(food)
 
 
-         ####### other filters
-
-         # if foodname.find('span', {'class': 'menusampspecialchars'}) is not None:
-         #  # nuts
-
-         # for tag in foodname.parent.next_siblings:
-         #  print tag # image for special filters
-
-
       meals[title.text.strip()] = foods
 
 
@@ -76,7 +67,7 @@ def scrape(college,):
 
 def scrapeall():
    foods = {}
-   halls = ['roma', 'wucox', 'whitman', 'forbes', 'cjl']
+   halls = ['roma', 'wucox', 'whitman', 'forbes', 'cjl', 'grad']
    for hall in halls:
       foods[hall] = scrape(hall)
    return foods
