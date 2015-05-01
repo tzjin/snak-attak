@@ -26,3 +26,31 @@ html {
 .food {
     margin-bottom: 15px;
 }
+
+.food-text {
+    width: 50%;
+}
+
+.food-name {
+    font-size: 1.2em;
+}
+
+.food-info {
+    font-size: .75em;
+    color: rgba(255,255,255,0.7);
+    padding-bottom: 13px;
+}
+
+.food-hall {
+    width: 75px;
+}
+
+.votes-column div {
+    display: inline;
+    padding: 0 8px;
+}
+
+.votes {
+    text-align: center;
+    font-size: 1.2em;
+}
