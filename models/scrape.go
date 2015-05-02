@@ -30,6 +30,7 @@ type Halls struct {
 
 func toFood(h Halls) []Food {
 	f := []Food{}
+	today := time.Now().Format("01-02-2006")
 	// Roma
 	for _, a := range h.Roma.Breakfast {
 		filter := ""
@@ -39,7 +40,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
+		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: today, Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Roma.Lunch {
@@ -50,7 +51,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
+		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: today, Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Roma.Dinner {
@@ -61,7 +62,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
+		fo := Food{Name: a.Name, Hall: "Rocky/Mathey", Votes: 0, Date: today, Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 
@@ -74,7 +75,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
+		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: today, Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Wucox.Lunch {
@@ -85,7 +86,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
+		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: today, Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Wucox.Dinner {
@@ -96,7 +97,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
+		fo := Food{Name: a.Name, Hall: "Wu/Wilcox", Votes: 0, Date: today, Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 
@@ -109,7 +110,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
+		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: today, Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Whitman.Lunch {
@@ -120,7 +121,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
+		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: today, Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Whitman.Dinner {
@@ -131,7 +132,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
+		fo := Food{Name: a.Name, Hall: "Whitman", Votes: 0, Date: today, Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	// Forbes
@@ -143,7 +144,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
+		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: today, Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Forbes.Lunch {
@@ -154,7 +155,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
+		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: today, Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Forbes.Dinner {
@@ -165,7 +166,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
+		fo := Food{Name: a.Name, Hall: "Forbes", Votes: 0, Date: today, Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	// Grad
@@ -177,7 +178,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
+		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: today, Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Grad.Lunch {
@@ -188,7 +189,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
+		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: today, Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.Grad.Dinner {
@@ -199,7 +200,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
+		fo := Food{Name: a.Name, Hall: "Grad", Votes: 0, Date: today, Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	// CJL
@@ -211,7 +212,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: filter, Meal: "b"}
+		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: today, Filters: filter, Meal: "b"}
 		f = append(f, fo)
 	}
 	for _, a := range h.CJL.Lunch {
@@ -222,7 +223,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: filter, Meal: "l"}
+		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: today, Filters: filter, Meal: "l"}
 		f = append(f, fo)
 	}
 	for _, a := range h.CJL.Dinner {
@@ -233,7 +234,7 @@ func toFood(h Halls) []Food {
 			}
 			filter += fil
 		}
-		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: "today", Filters: filter, Meal: "d"}
+		fo := Food{Name: a.Name, Hall: "CJL", Votes: 0, Date: today, Filters: filter, Meal: "d"}
 		f = append(f, fo)
 	}
 	return f
