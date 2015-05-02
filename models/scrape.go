@@ -6,6 +6,7 @@ import (
 	"github.com/go-gorp/gorp"
 	"os"
 	"os/exec"
+	"time"
 )
 
 type SFood struct {
@@ -30,7 +31,8 @@ type Halls struct {
 
 func toFood(h Halls) []Food {
 	f := []Food{}
-	today := time.Now().Format("01-02-2006")
+	today := time.Now().Local().Format("01-02-2006")
+	fmt.Println(today)
 	// Roma
 	for _, a := range h.Roma.Breakfast {
 		filter := ""

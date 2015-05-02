@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
-	// "time"
+	"time"
 
 	"database/sql"
 	"os"
@@ -61,9 +61,6 @@ func GetMealData(dbMap *gorp.DbMap, meal string) string {
 }
 
 func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
-	// Today's date
-	// t := time.Now().Local()
-	// date := t.Format("2006-01-02")
 
 	// Get foods that match name + today's date
 	// fuds, err := dbMap.Select(Food{}, "SELECT * FROM Foods where fname = $1 and date = $2 ", foodid, date)
@@ -95,7 +92,9 @@ func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 
 func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 	// meal of today?
-	_, err := dbMap.Select(&foods, "SELECT * FROM foods ORDER BY votes DESC")
+	today := time.Now().Local().Format("01-02-2006")
+	query := "SELECT * FROM foods ORDER BY votes DESC where date='" + today + "'"
+	_, err := dbMap.Select(&foods, query)
 
 	if err != nil {
 		glog.Warningf("Can't get foods by meal: %v", err)
