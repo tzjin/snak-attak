@@ -113,39 +113,14 @@ $(document).ready(function() {
 
   $(function() {
     var id2convert = "meals",
-        divs = $("div", "#" + id2convert),
+        divs = $("div", "#" + id2convert).find('.filter_name'),
         select = $("<select id=\"" + id2convert + "\">");
-    
     divs.each(function() {
         var text = $(this).text();
         select.append("<option value=\"" + text + "\">" + text + "</option>");
     });
     
-    divs.parent().replaceWith(select);
-  });
-  $(function() {
-    var id2convert = "halls",
-        divs = $("div", "#" + id2convert),
-        select = $("<select id=\"" + id2convert + "\">");
-    
-    divs.each(function() {
-        var text = $(this).text();
-        select.append("<option value=\"" + text + "\">" + text + "</option>");
-    });
-    
-    divs.parent().replaceWith(select);
-  });
-  $(function() {
-    var id2convert = "diets",
-        divs = $("div", "#" + id2convert),
-        select = $("<select id=\"" + id2convert + "\">");
-    
-    divs.each(function() {
-        var text = $(this).text();
-        select.append("<option value=\"" + text + "\">" + text + "</option>");
-    });
-    
-    divs.parent().replaceWith(select);
+    divs.parent().parent().replaceWith(select);
   });
 });
 
