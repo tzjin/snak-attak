@@ -111,7 +111,7 @@ $(document).ready(function() {
     renderList();   
   });
 
-  $(function() {
+  /*$(function() {
     var id2convert = "meals",
         divs = $("div", "#" + id2convert).find('.filter_name'),
         select = $("<select id=\"" + id2convert + "\">");
@@ -121,7 +121,7 @@ $(document).ready(function() {
     });
     
     divs.parent().parent().replaceWith(select);
-  });
+  });*/
 });
 
 
