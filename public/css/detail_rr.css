@@ -1,0 +1,56 @@
+body {
+    background: url(bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+#name {
+    margin-top: 10%;
+    width: 100%;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 100px;
+    text-shadow: 5px 5px 20px black;
+}
+
+.food {
+    margin-bottom: 15px;
+}
+
+.food-text {
+    width: 50%;
+}
+
+.food-name {
+    font-size: 1.2em;
+}
+
+.food-info {
+    font-size: .75em;
+    color: rgba(255,255,255,0.7);
+    padding-bottom: 13px;
+}
+
+.food-hall {
+    width: 75px;
+}
+
+.votes-column div {
+    display: inline;
+    padding: 0 8px;
+}
+
+.votes {
+    text-align: center;
+    font-size: 1.2em;
+}
