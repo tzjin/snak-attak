@@ -33,7 +33,6 @@ def scrape(college):
 
    html = f.read()
    soup = BeautifulSoup(html)
-   # print soup.prettify()
 
    meals = {}
    for title in soup.find_all('div', {'id':'menusampmeals'}):
@@ -45,9 +44,13 @@ def scrape(college):
 
       meals[title.text.strip()] = foods
 
-   print meals
    for name in meals:
       getFoodnum(college, name, meals[name])
+      for food in meals[name]:
+         if 'num' in food:
+            getNutrition(college, food)
+         else:
+            food['facts'] = {}
 
    return meals
 
@@ -74,22 +77,36 @@ def getFood(foodname):
    food['filt'] = filts
    return food
 
+
 def getFoodnum(college, meal, foods):
-   
    '''Get menu'''
-   f = urllib.urlopen(base + page['nutr'] + dhall[college] + '&meal=' + meal)
+   f = urllib.urlopen(base + page['nutr'] + dhall[college] + '&mealName=' + meal)
 
    html = f.read()
    soup = BeautifulSoup(html)
 
    for link in soup.find_all('a', href=True):
-      print link['href'].split('&')[-1]
+      url = link['href'].split('&')[-1]
+      if url.find('RecNum') != -1:
+         food = [item for item in foods if item["name"] == link.text]
+         if len(food) > 0:
+            food[0]['num'] = url
 
-   return 0
 
-def getNutrition(college, )
+def getNutrition(college, food):
+   facts = {}
 
-# https://campusdining.princeton.edu/dining/_Foodpro/label.asp?locationNum=02&RecNumAndPort=020056
+   '''Get menu'''
+   f = urllib.urlopen(base + page['fact'] + dhall[college] + '&' + food['num'])
+
+   html = f.read()
+   soup = BeautifulSoup(html)
+
+   print food
+
+   for fact in soup.find_all('div', {'id': 'facts4'}):
+      print fact.text
+
 
 
 def scrapeall():
