@@ -1,6 +1,4 @@
-import urllib
-import string
-import re
+import urllib, string, json
 from bs4 import BeautifulSoup
 
 '''URL parameters'''
@@ -44,6 +42,7 @@ def scrape(college):
 
       meals[title.text.strip()] = foods
 
+   ''' 
    for name in meals:
       getFoodnum(college, name, meals[name])
       for food in meals[name]:
@@ -51,6 +50,8 @@ def scrape(college):
             getNutrition(college, food)
          else:
             food['facts'] = {}
+
+   '''
 
    return meals
 
@@ -106,8 +107,7 @@ def getNutrition(college, food):
 
    for fact in soup.find_all('div', {'id': 'facts4'}):
       print fact.text
-
-
+      
 
 def scrapeall():
    foods = {}
@@ -117,9 +117,7 @@ def scrapeall():
    return foods
 
 if __name__ == "__main__":
-  import json
-  scrapeall()
-  # print json.dumps(scrapeall())
+  print json.dumps(scrapeall())
 
 
 
