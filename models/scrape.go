@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-gorp/gorp"
-	"os"
 	"os/exec"
 	"time"
 )
@@ -244,8 +243,7 @@ func toFood(h Halls) []Food {
 
 func StoreDailyData(dbMap *gorp.DbMap) {
 	// Scrape data
-	os.Chdir("./helpers")
-	a, err := exec.Command("python", "scrape.py").Output()
+	a, err := exec.Command("python", "./helpers/scrape.py").Output()
 
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)

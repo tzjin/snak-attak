@@ -67,7 +67,6 @@ func main() {
 	// handlers for /api/* calls
 	goji.Get("/api/get/", apicontroller.GET_data)
 	goji.Post("/api/inc/:id", apicontroller.INC_counter)
-	goji.Get("/api/inc/:id", apicontroller.INC_counter)
 	goji.Post("/api/dec/:id", apicontroller.DEC_counter)
 
 	graceful.PostHook(func() {
