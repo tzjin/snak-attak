@@ -171,14 +171,15 @@ $(document).ready(function() {
   });
 
   $(".filter_label").click(function() {
-    console.log("clicked")
-    var circles = $( ".circle" );
-    var names = $('.filter_name');
-    $(this).parent().parent().find(circles).slideUp();
-    $(this).parent().parent().find(names).slideUp();
-    if (!$(this).parent().parent().find(circles).is(":visible")) {
-      $(this).parent().parent().find(circles).slideDown();
-      $(this).parent().parent().find(names).slideDown();
+    if ($( document ).width() < 550) {
+      var circles = $( ".circle" );
+      var names = $('.filter_name');
+      $(this).parent().parent().find(circles).slideUp();
+      $(this).parent().parent().find(names).slideUp();
+      if (!$(this).parent().parent().find(circles).is(":visible")) {
+        $(this).parent().parent().find(circles).slideDown();
+        $(this).parent().parent().find(names).slideDown();
+      }
     }
   })
 });
