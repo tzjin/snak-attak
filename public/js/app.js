@@ -170,6 +170,7 @@ $(document).ready(function() {
     renderList();   
   });
 
+//click to colapse filters
   $(".filter_label").click(function() {
     if ($( document ).width() < 550) {
       var circles = $( ".circle" );
@@ -180,6 +181,20 @@ $(document).ready(function() {
         $(this).parent().parent().find(circles).slideDown();
         $(this).parent().parent().find(names).slideDown();
       }
+    }
+  })
+
+//auto collapse/open filters on resize
+  $(window).resize(function(){
+    var circles = $( ".circle" );
+    var names = $('.filter_name');    
+    if ($(window).width() < 550) {
+      $(".filter_label").parent().parent().find(circles).slideUp();
+      $(".filter_label").parent().parent().find(names).slideUp();
+    }
+    if ($(window).width() > 550) {
+      $(".filter_label").parent().parent().find(circles).slideDown();
+      $(".filter_label").parent().parent().find(names).slideDown();
     }
   })
 });
