@@ -170,17 +170,17 @@ $(document).ready(function() {
     renderList();   
   });
 
-  /*$(function() {
-    var id2convert = "meals",
-        divs = $("div", "#" + id2convert).find('.filter_name'),
-        select = $("<select id=\"" + id2convert + "\">");
-    divs.each(function() {
-        var text = $(this).text();
-        select.append("<option value=\"" + text + "\">" + text + "</option>");
-    });
-    
-    divs.parent().parent().replaceWith(select);
-  });*/
+  $(".filter_label").click(function() {
+    console.log("clicked")
+    var circles = $( ".circle" );
+    var names = $('.filter_name');
+    $(this).parent().parent().find(circles).slideUp();
+    $(this).parent().parent().find(names).slideUp();
+    if (!$(this).parent().parent().find(circles).is(":visible")) {
+      $(this).parent().parent().find(circles).slideDown();
+      $(this).parent().parent().find(names).slideDown();
+    }
+  })
 });
 
 
