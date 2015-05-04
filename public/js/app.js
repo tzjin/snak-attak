@@ -6,10 +6,14 @@ $(document).ready(function() {
   filters['hall'] = []
   filters['filter'] = []
 
+  var upvotes = []
+  var downvotes = []
+
+
+/********** FILTER MAGIC **********/
+
   // add or remove filter from list
   function toggleFilter(type, value) {
-    console.log(type)
-    console.log(filters[type])
     var index = filters[type].indexOf(value);
     if (index < 0)
       filters[type].push(value);
@@ -34,10 +38,7 @@ $(document).ready(function() {
   // highlight selected filter
   function highlightFilter(value) {
     var id = "div[id='" + value + "']"
-    if ($(id).hasClass('highlight'))
-      $(id).removeClass('highlight');
-    else
-      $(id).addClass('highlight');
+    $(id).toggleClass('highlight')
   }
 
   // hide or show each food item in list
@@ -58,6 +59,8 @@ $(document).ready(function() {
           // else just check to see if contains filter
           else {
             valid_filt |= $(this).hasClass(filters[ls][idx]);
+
+            // all vegan items are also vegetarian
             if (filters[ls][idx] == 'Vegetarian')
               valid_filt |= $(this).hasClass('Vegan');
           }
@@ -75,6 +78,39 @@ $(document).ready(function() {
     });
   }
 
+
+/********** VOTING MAGIC **********/
+  
+  // update view and send post request
+  function upvote(id) {
+    var vote = $('#' + id).find('.votes')
+    upvotes.push(id);
+    vote.html(parseInt(vote.text())+1);
+    $.post( "/api/inc/" + id);
+  }
+
+  // update view and send post request
+  function downvote(id) {
+    var vote = $('#' + id).find('.votes')
+    downvotes.push(id)
+    vote.html(parseInt(vote.text())-1);
+    $.post("/api/dec/" + id);
+  }
+
+  // highlight arrow
+  function toggleUpvote(id) {
+    var vote = $('.upvote[data-food-id="' + id + '"]')
+    vote.toggleClass('grey')
+  }
+
+  function toggleDownvote(id) {
+    var vote = $('.downvote[data-food-id="' + id + '"]')
+    vote.toggleClass('grey')
+  }
+
+
+/********** CLICK HANDLERS **********/
+
   // initial setup
   getCurrentMeal();
   renderList();
@@ -82,17 +118,39 @@ $(document).ready(function() {
   // upvote clicked
   $('.upvote').click(function() {
     var id = $(this).data('food-id')
-    var vote = $('#' + id).find('.votes')
-    vote.html(parseInt(vote.text())+1);
-    $.post( "/api/inc/" + id);
+    
+    if (upvotes.indexOf(id) != -1) {
+      console.log("Already voted on this item!")
+      return
+    }
+
+    if (downvotes.indexOf(id) != -1) {
+      downvotes.splice(downvotes.indexOf(id), 1)
+      toggleDownvote(id)
+      upvote(id)
+    }
+
+    toggleUpvote(id)
+    upvote(id)
   });
 
   // downvote clicked
   $('.downvote').click(function() {
     var id = $(this).data('food-id')
-    var vote = $('#' + id).find('.votes')
-    vote.html(parseInt(vote.text())-1);
-    $.post("/api/dec/" + id);
+    
+    if (downvotes.indexOf(id) != -1) {
+      console.log("Already voted on this item!")
+      return
+    }
+
+    if (upvotes.indexOf(id) != -1) {
+      upvotes.splice(upvotes.indexOf(id), 1)
+      toggleUpvote(id)
+      downvote(id)
+    }
+
+    toggleDownvote(id)
+    downvote(id)
   });
 
   // filter selected
@@ -101,7 +159,8 @@ $(document).ready(function() {
     var type = $(this).attr('class');
     var value = $(this).attr('id')
 
-    type = $.trim(type.replace('circle', '').replace('highlight', ''));
+    type = $.trim(type.replace('circle', '')
+      .replace('highlight', ''));
 
     console.log(filters[type]);
 

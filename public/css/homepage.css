@@ -43,6 +43,10 @@ body {
     margin: 0 20%;
 }
 
+.grey {
+    color: dimgrey;
+}
+
 .filter_name {
     text-align: center;
     margin: auto;
@@ -90,7 +94,7 @@ body {
 }
 
 .shaded-bg {
-    padding: 0 5%;
+    padding: 0 3%;
     background:rgba(0,0,0,0.6);
     width: 100%;
 }
@@ -136,6 +140,7 @@ body {
         float: left;
         width: auto;
         margin-top: 6%;
+        font-size: 90px;
     }
 
     .filters {
@@ -149,6 +154,10 @@ body {
     hr {
         margin-top: 0;
     }
+
+    .shaded-bg {
+        padding: 0 1em 0 2em;
+    }
 }
 
 /* Larger than desktop */
@@ -156,6 +165,9 @@ body {
     #name {
         margin-top: 5%;
         font-size: 100px;
+    }
+    .shaded-bg {
+        padding: 0 4em;
     }
 }
 
