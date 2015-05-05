@@ -92,7 +92,7 @@ func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 
 func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 	// meal of today?
-	today := time.Now().Local().Format("01-02-2006")
+	today := time.Now().Local().Add(-4 * time.Hour).Format("01-02-2006")
 	fmt.Println(today)
 	query := "SELECT * FROM foods where date='" + today + "' ORDER BY votes DESC "
 	fmt.Println(query)

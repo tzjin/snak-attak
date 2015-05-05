@@ -63,7 +63,7 @@ func (application *Application) Init() {
 	c := cron.New()
 	c.AddFunc("@midnight", func() { models.StoreDailyData(application.DbMap) })
 	c.Start()
-	//models.StoreDailyData(application.DbMap)
+
 	if len(models.GetFoodByMeal(application.DbMap, "l")) == 0 {
 		models.StoreDailyData(application.DbMap)
 	}
