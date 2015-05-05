@@ -86,7 +86,6 @@ $(document).ready(function() {
   // update view and send post request
   function upvote(id) {
     var vote = $('#' + id).find('.votes')
-    upvotes.push(id);
     vote.html(parseInt(vote.text())+1);
     $.post( "/api/inc/" + id);
   }
@@ -94,7 +93,6 @@ $(document).ready(function() {
   // update view and send post request
   function downvote(id) {
     var vote = $('#' + id).find('.votes')
-    downvotes.push(id)
     vote.html(parseInt(vote.text())-1);
     $.post("/api/dec/" + id);
   }
@@ -122,17 +120,22 @@ $(document).ready(function() {
     var id = $(this).data('food-id')
     
     if (upvotes.indexOf(id) != -1) {
-      console.log("Already voted on this item!")
+      upvotes.splice(upvotes.indexOf(id), 1)
+      toggleUpvote(id);
+      downvote(id)
       return
     }
 
     if (downvotes.indexOf(id) != -1) {
-      downvotes.splice(downvotes.indexOf(id), 1)
       toggleDownvote(id)
-      upvote(id)
+      downvotes.splice(downvotes.indexOf(id), 1)
+      setTimeout(function() {
+        upvote(id)
+      }, 50)
     }
 
     toggleUpvote(id)
+    upvotes.push(id);
     upvote(id)
   });
 
@@ -141,17 +144,22 @@ $(document).ready(function() {
     var id = $(this).data('food-id')
     
     if (downvotes.indexOf(id) != -1) {
-      console.log("Already voted on this item!")
+      downvotes.splice(downvotes.indexOf(id), 1)
+      toggleDownvote(id);
+      upvote(id)
       return
     }
 
     if (upvotes.indexOf(id) != -1) {
       upvotes.splice(upvotes.indexOf(id), 1)
       toggleUpvote(id)
-      downvote(id)
+      setTimeout(function () {
+        downvote(id);
+      }, 50)
     }
 
     toggleDownvote(id)
+    downvotes.push(id)
     downvote(id)
   });
 
