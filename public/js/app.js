@@ -9,6 +9,8 @@ $(document).ready(function() {
   var upvotes = []
   var downvotes = []
 
+  var circles = $( ".circle" );
+  var names = $('.filter_name'); 
 
 /********** FILTER MAGIC **********/
 
@@ -25,7 +27,7 @@ $(document).ready(function() {
   function getCurrentMeal() {
     var time = new Date();
     var hour = time.getHours();
-    if (hour < 10 )
+    if (hour < 11 )
       filters['meal'].push('b')
     else if (hour < 14)
       filters['meal'].push('l')
@@ -173,8 +175,6 @@ $(document).ready(function() {
 //click to colapse filters
   $(".filter_label").click(function() {
     if ($( document ).width() < 550) {
-      var circles = $( ".circle" );
-      var names = $('.filter_name');
       $(this).parent().parent().find(circles).slideUp();
       $(this).parent().parent().find(names).slideUp();
       if (!$(this).parent().parent().find(circles).is(":visible")) {
@@ -185,9 +185,7 @@ $(document).ready(function() {
   })
 
 //auto collapse/open filters on resize
-  $(window).resize(function(){
-    var circles = $( ".circle" );
-    var names = $('.filter_name');    
+  $(window).resize(function(){   
     if ($(window).width() < 550) {
       $(".filter_label").parent().parent().find(circles).slideUp();
       $(".filter_label").parent().parent().find(names).slideUp();
