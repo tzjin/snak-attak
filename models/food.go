@@ -63,7 +63,6 @@ func GetMealData(dbMap *gorp.DbMap, meal string) string {
 func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 
 	// Get foods that match name + today's date
-	// fuds, err := dbMap.Select(Food{}, "SELECT * FROM Foods where fname = $1 and date = $2 ", foodid, date)
 	obj, err := dbMap.Get(Food{}, foodid)
 
 	food, ok := obj.(*Food)
@@ -126,13 +125,6 @@ func GetDbMap() *gorp.DbMap {
 	// use a migration tool, or create the tables via scripts
 	err = dbMap.CreateTablesIfNotExists()
 	checkErr(err, "Create tables failed")
-
-	// var foods []Food
-	// _, err = dbMap.Select(&foods, "SELECT * FROM foods")
-	// fmt.Printf("%d\n",len(foods))
-	// for x, p := range foods {
-	// 	fmt.Printf("    %d: %v\n", x, p)
-	// }
 
 	return dbMap
 }
