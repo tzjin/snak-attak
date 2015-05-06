@@ -59,25 +59,15 @@ func (application *Application) Init() {
 		Secure: false,
 	}
 
-	// timeformat := "01/02/2006 3:04pm MST"
-
-	// Eastern := time.FixedZone("Eastern", -4*3600)
-	// // localtime := time.Now().UTC().In(Eastern)
-	// // today := localtime.Format("01-02-2006")
-	// // log.Printf("%v - %v - %v\n", localtime.Format(timeformat), localtime.Unix(), localtime.Location())
-	// localtime := time.Now().UTC().In(Eastern)
-	// today := time.Now().Local().Add(-4 * time.Hour).Format("01-02-2006")
-	// fmt.Printf("%v - %v - %v\n", localtime.Format(timeformat), localtime.UTC(), localtime.Location())
-	// fmt.Println(today)
-
 	// Setup scheduler + scraper
+	// runs a minute after the hour
 	c := cron.New()
-	c.AddFunc("@midnight", func() { models.StoreDailyData(application.DbMap) })
+	c.AddFunc("0 1 * * * *", func() {
+		if len(models.GetFoodByMeal(application.DbMap, "l")) == 0 {
+			models.StoreDailyData(application.DbMap)
+		}
+	})
 	c.Start()
-
-	if len(models.GetFoodByMeal(application.DbMap, "l")) == 0 {
-		models.StoreDailyData(application.DbMap)
-	}
 
 	// application.Config = config
 }
