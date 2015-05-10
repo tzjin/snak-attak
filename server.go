@@ -33,36 +33,18 @@ func main() {
 
 	// Apply middleware
 	goji.Use(application.ApplyTemplates)
-	goji.Use(application.ApplySessions)
 	goji.Use(application.ApplyDbMap)
-	goji.Use(application.ApplyAuth)
-	goji.Use(application.ApplyIsXhr)
-	// goji.Use(application.ApplyCsrfProtection)
 	goji.Use(context.ClearHandler)
 
 	controller := &controllers.MainController{}
 	apicontroller := &controllers.ApiController{}
 
 	// Couple of files - in the real world you would use nginx to serve them.
-	goji.Get("/robots.txt", http.FileServer(http.Dir(publicPath)))
-	goji.Get("/favicon.ico", http.FileServer(http.Dir(publicPath+"/images")))
-
-	// test code
-	// goji.Get("/hello/:name", controller.hello)
+	goji.Get("/assets/robots.txt", http.FileServer(http.Dir(publicPath)))
+	goji.Get("/assets/img/favicon.ico", http.FileServer(http.Dir(publicPath+"/images")))
 
 	// Home page
 	goji.Get("/", application.Route(controller, "Index"))
-
-	// Sign In routes
-	goji.Get("/signin", application.Route(controller, "SignIn"))
-	goji.Post("/signin", application.Route(controller, "SignInPost"))
-
-	// Sign Up routes
-	goji.Get("/signup", application.Route(controller, "SignUp"))
-	goji.Post("/signup", application.Route(controller, "SignUpPost"))
-
-	// KTHXBYE
-	goji.Get("/logout", application.Route(controller, "Logout"))
 
 	// handlers for /api/* calls
 	goji.Get("/api/get/", apicontroller.GET_data)

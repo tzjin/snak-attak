@@ -24,7 +24,6 @@ type Food struct {
 	Meal     string //`db:"meal`
 	Filters  string //'db:"filters
 	Comments string //`comments`
-	// Filters?
 }
 
 func InsertFood(dbMap *gorp.DbMap, food *Food) error {
@@ -68,7 +67,7 @@ func VoteById(dbMap *gorp.DbMap, foodid int64, up bool) (food *Food) {
 
 	food, ok := obj.(*Food)
 	if !ok {
-		// cannot convert interface
+		glog.Warningf("Cannot convert interface: %v", err)
 	}
 
 	if up {
@@ -106,13 +105,11 @@ func GetFoodByMeal(dbMap *gorp.DbMap, meal string) (foods []*Food) {
 }
 
 // write get comments
-
 func GetDbMap() *gorp.DbMap {
 	// connect to db using standard Go database/sql API
 	// use whatever database/sql driver you wish
-	//checkErr(err, "postgres.Open failed")
 	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	checkErr(err, "sql.Open failed")
+	checkErr(err, "postgres.Open failed")
 
 	// construct a gorp DbMap
 	dbMap := &gorp.DbMap{Db: db, Dialect: gorp.PostgresDialect{}}
@@ -121,7 +118,6 @@ func GetDbMap() *gorp.DbMap {
 	// specifying that the FoodId property is an auto incrementing PK
 	t := dbMap.AddTableWithName(Food{}, "foods").SetKeys(true, "Id")
 	t.ColMap("Name").SetMaxSize(100)
-	// t.ColMap("foodname").SetMaxSize(20)
 	t.ColMap("Meal").SetMaxSize(1)
 
 	// create the table. in a production system you'd generally
