@@ -62,7 +62,7 @@ func (application *Application) Init() {
 	// Setup scheduler + scraper
 	// runs a minute after the hour
 	c := cron.New()
-	c.AddFunc("0 1 * * * *", func() {
+	c.AddFunc("@midnight", func() {
 		if len(models.GetFoodByMeal(application.DbMap, "l")) == 0 {
 			models.StoreDailyData(application.DbMap)
 		}
