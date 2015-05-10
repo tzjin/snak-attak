@@ -30,7 +30,8 @@ type Halls struct {
 
 func toFood(h Halls) []Food {
 	f := []Food{}
-	today := time.Now().Local().Add(-4 * time.Hour).Format("01-02-2006")
+	Eastern := time.FixedZone("Eastern", -4*3600)
+	today := time.Now().UTC().In(Eastern).Format("01-02-2006")
 	fmt.Println(today)
 	// Roma
 	for _, a := range h.Roma.Breakfast {
