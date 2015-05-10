@@ -1,0 +1,47 @@
+body {
+ background: #FBFBFB; 
+}
+
+.top {
+  background: url(../img/bg.jpg) no-repeat left top;
+  background-size: cover;
+  width: 100%;
+  
+  margin-bottom: 5vh;
+  padding: 20vh 0;
+  
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.header {
+  position: relative;
+}
+
+#title {
+  font-size: 8rem;  
+  line-height: 1em;
+}
+
+#slogan {
+  font-size: 3rem;
+  line-height: 1em;
+  margin: 0;
+}
+
+.info {
+  background: white;
+  padding: 3%;
+  max-width: 1080px;
+}
+
+img {
+  width: 100%;
+}
+
+.team {
+  text-align: center;  
+}
+
+

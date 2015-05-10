@@ -1,7 +1,6 @@
 package main
 
 import (
-	// "flag"
 	"net/http"
 
 	"github.com/golang/glog"

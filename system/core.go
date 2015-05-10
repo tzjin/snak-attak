@@ -9,67 +9,31 @@ import (
 	"reflect"
 	"strings"
 
-	"crypto/sha256"
-
 	"github.com/go-gorp/gorp"
 	"github.com/golang/glog"
-	"github.com/gorilla/sessions"
-	// "github.com/pelletier/go-toml"
 	"github.com/robfig/cron"
 	"github.com/zenazn/goji/web"
 	"sniksnak/models"
 )
 
-type CsrfProtection struct {
-	Key    string
-	Cookie string
-	Header string
-	Secure bool
-}
-
 type Application struct {
-	// Config         *toml.TomlTree
-	Template       *template.Template
-	Store          *sessions.CookieStore
-	DbMap          *gorp.DbMap
-	CsrfProtection *CsrfProtection
+	Template *template.Template
+	DbMap    *gorp.DbMap
 }
 
 func (application *Application) Init() {
 
-	// config, err := toml.LoadFile(*filename)
-	// if err != nil {
-	// 	glog.Fatalf("TOML load failed: %s\n", err)
-	// }
-
-	hash := sha256.New()
-	io.WriteString(hash, "blankityblank")
-	application.Store = sessions.NewCookieStore(hash.Sum(nil))
-	application.Store.Options = &sessions.Options{
-		HttpOnly: true,
-		Secure:   false,
-	}
-
 	application.DbMap = models.GetDbMap()
-
-	application.CsrfProtection = &CsrfProtection{
-		Key:    "blank",
-		Cookie: "blank",
-		Header: "blank",
-		Secure: false,
-	}
 
 	// Setup scheduler + scraper
 	// runs a minute after the hour
 	c := cron.New()
-	c.AddFunc("0 5 * * * *", func() {
+	c.AddFunc("0 1 * * * *", func() {
 		if len(models.GetFoodByMeal(application.DbMap, "l")) == 0 {
 			models.StoreDailyData(application.DbMap)
 		}
 	})
 	c.Start()
-
-	// application.Config = config
 }
 
 func (application *Application) LoadTemplates() error {
@@ -105,13 +69,6 @@ func (application *Application) Route(controller interface{}, route string) inte
 		method := methodInterface.(func(c web.C, r *http.Request) (string, int))
 
 		body, code := method(c, r)
-
-		if session, exists := c.Env["Session"]; exists {
-			err := session.(*sessions.Session).Save(r, w)
-			if err != nil {
-				glog.Errorf("Can't save session: %v", err)
-			}
-		}
 
 		switch code {
 		case http.StatusOK:
