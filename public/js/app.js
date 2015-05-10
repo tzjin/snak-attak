@@ -27,7 +27,7 @@ $(document).ready(function() {
   function getCurrentMeal() {
     var time = new Date();
     var hour = time.getHours();
-    if (hour < 11 )
+    if (hour < 11 || hour > 20)
       filters['meal'].push('b')
     else if (hour < 14)
       filters['meal'].push('l')
