@@ -1,6 +1,7 @@
 package system
 
 import (
+	"fmt"
 	"html/template"
 	"io"
 	"net/http"
@@ -29,7 +30,9 @@ func (application *Application) Init() {
 	// runs a minute after the hour
 	c := cron.New()
 	c.AddFunc("0 1 * * * *", func() {
+		fmt.Println("It is time!")
 		if len(models.GetFoodByMeal(application.DbMap, "l")) == 0 {
+			fmt.Println("Getting food!")
 			models.StoreDailyData(application.DbMap)
 		}
 	})
