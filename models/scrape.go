@@ -247,7 +247,7 @@ func StoreDailyData(dbMap *gorp.DbMap) {
 	a, err := exec.Command("python", "./helpers/scrape.py").Output()
 
 	if err != nil {
-		fmt.Printf("Error: %v\n", err)
+		fmt.Printf("Error calling python: %v\n", err)
 	} else {
 		// Unmarshall Json
 		var h Halls
@@ -261,7 +261,7 @@ func StoreDailyData(dbMap *gorp.DbMap) {
 		for _, f := range allFoods {
 			err = dbMap.Insert(&f)
 			if err != nil {
-				fmt.Println("Error: %v\n", err)
+				fmt.Println("Error inserting food: %v\n", err)
 			}
 
 		}
