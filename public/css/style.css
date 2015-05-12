@@ -36,6 +36,10 @@ body {
   max-width: 1080px;
 }
 
+.pics {
+  padding: 4%;
+}
+
 img {
   width: 100%;
 }
